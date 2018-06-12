@@ -1,0 +1,17 @@
+:local(.mystery-word) {
+  width: fit-content;
+  display: flex;
+  h2 {
+    font-size: 2em;
+    text-align: center;
+    margin: 0;
+  }
+  .underline {
+    width: 2em;
+    border-bottom: 3px solid black;
+    margin: 0.5rem;
+  }
+  .hidden {
+    visibility: hidden;
+  }
+}
