@@ -18,17 +18,31 @@ class Game extends PureComponent {
     missesCount: PropTypes.number,
     addGuess: PropTypes.func.isRequired
   };
+
+  state = {
+    entry: ''
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.addGuess(this.state.entry);
+    this.setState({ entry: '' });
+  };
   
   render() {
     const { initiateGame, wordArray, missesCount, hits, misses } = this.props;
+    const { entry } = this.state;
 
     return (
       <section>
         <button onClick={initiateGame}>New Game</button>
         <Hangman missesCount={missesCount}/>
         <MysteryWord hits={hits} wordArray={wordArray}/>
-        {/* <WrongLetters/> */}
+        <WrongLetters misses={misses}/>
         {/* <LetterInput/> */}
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" maxLength="1" value={entry} onChange={({ target }) => this.setState({ entry: target.value.toUpperCase() })}/>
+        </form>
       </section>
     );
   }

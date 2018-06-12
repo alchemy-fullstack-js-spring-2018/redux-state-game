@@ -1,0 +1,9 @@
+:local(.wrong-letters) {
+  width: fit-content;
+  display: flex;
+  h2 {
+    font-size: 2em;
+    text-align: center;
+    margin: 0.5rem;
+  }
+}

@@ -44,7 +44,7 @@ export const getGameState = state => {
 export function guesses(state = [], { type, payload }) {
   switch(type) {
     case GUESS:
-      return [...state, payload.guess];
+      return [...state, payload];
     case NEW_GAME:
       return [];
     default:
