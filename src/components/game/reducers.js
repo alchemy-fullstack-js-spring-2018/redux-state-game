@@ -35,6 +35,8 @@ export const getGameState = state => {
 
   if(wordArray.every(letter => guesses.includes(letter))) return GAME_STATE.WIN;
 
+  const missCount = countMisses(state);
+  if(missCount === 6) return GAME_STATE.LOSE;
 };
 
 export function guesses(state = [], { type, payload }) {
