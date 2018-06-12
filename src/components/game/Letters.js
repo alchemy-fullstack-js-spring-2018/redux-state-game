@@ -5,7 +5,7 @@ export default class Letters extends Component {
   render() {
     return (
       <section>
-        <Man />
+        <Letter />
       </section>
     );
   }
