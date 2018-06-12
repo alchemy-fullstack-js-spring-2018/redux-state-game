@@ -13,7 +13,7 @@ export const GAME_STATE = {
 export const newMatch = () => ({
   limbCount: 0,
   word: '',
-  chosen: '',
+  chosen: [],
   guess: '',
 });
 

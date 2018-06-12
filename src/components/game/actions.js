@@ -48,10 +48,10 @@ export const initRound = wordBank => {
 };
 
 export const makeGuess = (letter, chosen) => {
-  const newChosen = chosen.push(letter);
+  chosen.push(letter);
 
   return {
     type: NEW_GUESS,
-    payload: newChosen,
+    payload: chosen
   };
 }; 

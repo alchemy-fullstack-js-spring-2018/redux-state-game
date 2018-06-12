@@ -30,10 +30,10 @@ class Game extends PureComponent {
       <section>
         <Man />
         <section id="game-status">
-          {word ? <span>{6 - limbCount} out of 6 limbs remaining!</span> : null}
-          {chosen ? chosen.map((letter, index) => <div key={index}>{letter}</div>) : null}
           <button onClick={initGame}>New Game</button>
-          <GameForm onGuess={this.handleGuess}/>
+          {word ? <GameForm onGuess={this.handleGuess}
+            limbCount={limbCount}
+            chosen={chosen}/> : null}
         </section>
       </section>
     );
