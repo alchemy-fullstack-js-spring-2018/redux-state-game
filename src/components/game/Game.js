@@ -15,7 +15,7 @@ const message = {
   [PLAYING]: 'Enter a Letter Below!',
   [WIN]: 'You Win!',
   [LOSE]: 'You Lose!',
-  [EMPTY]: 'Press New Game!'
+  [EMPTY]: ''
 };
 
 class Game extends PureComponent {
@@ -46,6 +46,7 @@ class Game extends PureComponent {
 
     return (
       <section className={styles.game}>
+        <button onClick={initiateGame}>NEW GAME</button>
         <h2 className={gameState.toLowerCase()}>{message[gameState]}</h2>
         {gameState === PLAYING &&
           <form onSubmit={this.handleSubmit}>
@@ -53,7 +54,6 @@ class Game extends PureComponent {
           </form>
         }
         {gameState === LOSE && <h3>The word was {word}</h3>}
-        <button onClick={initiateGame}>New Game</button>
         <Hangman missesCount={missesCount}/>
         <MysteryWord hits={hits} wordArray={wordArray}/>
         {gameState !== EMPTY && <WrongLetters misses={misses}/>}
