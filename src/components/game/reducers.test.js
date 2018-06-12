@@ -4,7 +4,8 @@ import {
   GUESS,
   NEW_GAME,
   getGuesses,
-  getWord
+  getWord,
+  createWordArray
 } from './reducers';
 
 describe('guesses reducer', () => {
@@ -51,5 +52,11 @@ describe('selectors', () => {
     const word = 'secret';
     const got = getWord({ word });
     expect(got).toBe(word);
+  });
+
+  it('creates an array from the mystery word', () => {
+    const word = 'unknown';
+    const array = createWordArray({ word });
+    expect(array).toEqual(['u', 'n', 'k', 'n', 'o', 'w', 'n']);
   });
 });
