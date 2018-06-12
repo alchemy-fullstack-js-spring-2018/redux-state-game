@@ -15,6 +15,12 @@ export const getRoundState = state => {
 
   if(!one || !two) return ROUND_STATE.CHOOSING;
 
+  if(one.hp >= 1 && two.hp >= 1) return ROUND_STATE.PLAYING;
+
+  if(one.hp >= 1 && two.hp <= 0) return ROUND_STATE.WIN;
+
+  return ROUND_STATE.LOSE;
+  
 };
 
 const initSelections = () => [];
