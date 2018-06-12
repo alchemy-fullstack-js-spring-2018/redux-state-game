@@ -20,8 +20,11 @@ class Game extends PureComponent {
   };
   
   render() {
+    const { initiateGame, wordArray, missesCount, hits, misses } = this.props;
+
     return (
       <section>
+        <button onClick={initiateGame}>New Game</button>
         <Hangman/>
         <MysteryWord/>
         <button>New Game</button>
