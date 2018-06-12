@@ -1,5 +1,7 @@
 export const SELECTION = 'SELECTION';
 export const NEW_ROUND = 'NEW_ROUND';
+export const COUNTER = 'COUNTER';
+
 
 export const ROUND_STATE = {
   CHOOSING: 'CHOOSING',
@@ -34,6 +36,19 @@ export function selections(state = initSelections(), { type, payload }) {
     }
     case NEW_ROUND: {
       return initSelections();
+    }
+    default:
+      return state;
+  }
+}
+const prevState = [];
+export function match(state = prevState, { type, payload }) {
+  switch (type) {
+    case COUNTER: {
+      return {
+        ...state,
+        [payload]: [payload][1].hp - [payload][0].attack
+      };
     }
     default:
       return state;
