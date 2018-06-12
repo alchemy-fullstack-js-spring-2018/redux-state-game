@@ -1,4 +1,4 @@
-import { tally, initMatch, getGameState, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
+import { tally, initMatch, getGameState, guessed, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
 
 const firstGameState = {
   limbCount: 2,
@@ -46,6 +46,19 @@ describe('testing whether the Game tally is tallying', () => {
   it('checks to see if game lost, Tally lose goes up by one', () => {
     const state = tally(initMatch(), {
       type: NEW_ROUND,
+      payload: GAME_STATE.LOSE
+    });
+    const expected = {
+      [GAME_STATE.WIN]: 0,
+      [GAME_STATE.LOSE]: 1,
+    };
+
+    expect(state).toEqual(expected);
+  });
+
+  it('checks to see if game won, Tally win goes up by one', () => {
+    const state = tally(initMatch(), {
+      type: NEW_ROUND,
       payload: GAME_STATE.WIN
     });
     const expected = {
@@ -53,6 +66,25 @@ describe('testing whether the Game tally is tallying', () => {
       [GAME_STATE.LOSE]: 0,
     };
 
+    expect(state).toEqual(expected);
+  });
+
+
+});
+
+describe('Testing user guessed', () => {
+
+  it('tests whether guest word is returned', () => {
+
+    const state = guessed(secondGameState.word, {
+      type: NEW_GUESS,
+      payload:{  
+        word: 'sassy',
+        chosen: 'sassy',
+      }
+    });
+
+    const expected = { word: 'sassy' }; 
     expect(state).toEqual(expected);
   });
 });

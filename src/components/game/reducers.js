@@ -9,7 +9,7 @@ export const getLimbCount = state => state.limbCount;
 export const getGuessed = state => state.guessed;
 
 export const GAME_STATE = {
-  BlANK: 'BLANK',
+  BLANK: 'BLANK',
   PLAYING: 'PLAYING',
   WIN: 'WIN',
   LOSE: 'LOSE',
