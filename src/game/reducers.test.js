@@ -32,4 +32,8 @@ describe('word reducer', () => {
     expect(state).toEqual('');
   });
 
+  it('sets a new mystery word', () => {
+    const state = word('', { type: NEW_GAME, payload: 'secret' });
+    expect(state).toEqual('secret');
+  });
 });
