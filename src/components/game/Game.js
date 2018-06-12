@@ -40,13 +40,11 @@ class Game extends PureComponent {
         <button onClick={initiateGame}>New Game</button>
         <Hangman missesCount={missesCount}/>
         <MysteryWord hits={hits} wordArray={wordArray}/>
+        {gameState !== EMPTY && <WrongLetters misses={misses}/>}
         {gameState === PLAYING &&
-        <div>
-          <WrongLetters misses={misses}/>
           <form onSubmit={this.handleSubmit}>
             <input type="text" maxLength="1" value={entry} onChange={({ target }) => this.setState({ entry: target.value.toUpperCase() })}/>
           </form>
-        </div>
         }
       </section>
     );
