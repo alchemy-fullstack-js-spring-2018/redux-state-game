@@ -4,7 +4,6 @@ export const NEW_GUESS = 'NEW_GUESS';
 
 export const getWord = state => state.word;
 export const createWordArray = state => getWord(state).split('');
-export const getChosen = state => state.chosen;
 export const getLimbCount = state => state.limbCount;
 export const getGuessed = state => state.guessed;
 
@@ -24,8 +23,8 @@ export const getGameState = state => {
   if(limbCount >= 6) return GAME_STATE.LOSE;
 
   const wordArray = createWordArray(state);
-  const chosen = getChosen(state);
-  if(wordArray.every(letter => chosen.includes(letter))) return GAME_STATE.WIN;
+  const guessed = getGuessed(state);
+  if(wordArray.every(letter => guessed.includes(letter))) return GAME_STATE.WIN;
   
   return GAME_STATE.PLAYING;
 };
