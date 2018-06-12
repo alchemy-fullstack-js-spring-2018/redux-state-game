@@ -5,13 +5,13 @@ import Hangman from './Hangman';
 import MysteryWord from './MysteryWord';
 import WrongLetters from './WrongLetters';
 // import LetterInput from './LetterInput';
-import { getGameState, createWordArray, countMisses, findHits, findMisses, GAME_STATE } from './reducers';
+import { getGameState, createWordArray, countMisses, findHits, findMisses, GAME_STATE, getWord } from './reducers';
 import { initiateGame, addGuess } from './actions';
 
 const { PLAYING, WIN, LOSE, EMPTY } = GAME_STATE;
 
 const message = {
-  [PLAYING]: 'Enter a Letter!',
+  [PLAYING]: 'Enter a Letter Below!',
   [WIN]: 'You Win!',
   [LOSE]: 'You Lose!',
   [EMPTY]: 'Press New Game!'
@@ -25,7 +25,8 @@ class Game extends PureComponent {
     hits: PropTypes.array,
     misses: PropTypes.array,
     missesCount: PropTypes.number,
-    addGuess: PropTypes.func.isRequired
+    addGuess: PropTypes.func.isRequired,
+    word: PropTypes.string
   };
 
   state = {
@@ -39,12 +40,13 @@ class Game extends PureComponent {
   };
   
   render() {
-    const { initiateGame, wordArray, missesCount, hits, misses, gameState } = this.props;
+    const { initiateGame, wordArray, missesCount, hits, misses, gameState, word } = this.props;
     const { entry } = this.state;
 
     return (
       <section>
         <h2>{message[gameState]}</h2>
+        {gameState === LOSE && <span>The word was {word}</span>}
         <button onClick={initiateGame}>New Game</button>
         <Hangman missesCount={missesCount}/>
         <MysteryWord hits={hits} wordArray={wordArray}/>
@@ -65,7 +67,8 @@ export default connect(
     wordArray: createWordArray(state),
     missesCount: countMisses(state),
     hits: findHits(state),
-    misses: findMisses(state)
+    misses: findMisses(state),
+    word: getWord(state)
   }),
   { initiateGame, addGuess }
 )(Game);
