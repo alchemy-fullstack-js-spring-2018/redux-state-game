@@ -1,4 +1,4 @@
-import { makeChoice, newRound, poke1, poke2, poke3 } from './actions';
+import { makeChoice, newRound, poke1, poke2 } from './actions';
 import { SELECTION, NEW_ROUND } from './reducers';
 
 describe('makeChoice action', () => {
@@ -19,7 +19,7 @@ describe('makeChoice action', () => {
 
     expect(calls[1][0]).toEqual({
       type: SELECTION,
-      payload: { index: 1, choice: expect.objectContaining(poke1 || poke2 || poke3) }
+      payload: { index: 1, choice: expect.objectContaining({ name: expect.any(String) }) }
     });
   });
 
