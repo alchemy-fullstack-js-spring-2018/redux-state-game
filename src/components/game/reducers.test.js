@@ -2,7 +2,8 @@ import {
   guesses,
   word,
   GUESS,
-  NEW_GAME
+  NEW_GAME,
+  getGuesses
 } from './reducers';
 
 describe('guesses reducer', () => {
@@ -35,5 +36,13 @@ describe('word reducer', () => {
   it('sets a new mystery word', () => {
     const state = word('', { type: NEW_GAME, payload: 'secret' });
     expect(state).toEqual('secret');
+  });
+});
+
+describe('selectors', () => {
+  it('gets guesses', () => {
+    const guesses = ['a', 'b'];
+    const got = getGuesses({ guesses });
+    expect(got).toBe(guesses);
   });
 });

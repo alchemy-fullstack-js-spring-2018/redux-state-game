@@ -1,6 +1,9 @@
 export const GUESS = 'GUESS';
 export const NEW_GAME = 'NEW_GAME';
 
+export const getGuesses = state => state.guesses;
+
+
 export function guesses(state = [], { type, payload }) {
   switch(type) {
     case GUESS:
