@@ -3,8 +3,6 @@ export const NEW_ROUND = 'NEW_ROUND';
 export const NEW_GUESS = 'NEW_GUESS';
 export const TALLY_ROUND = 'TALLY_ROUND';
 
-export const getWord = state => state.word;
-
 export const GAME_STATE = {
   BlANK: 'BlANK',
   PLAYING: 'PLAYING',
@@ -18,6 +16,27 @@ export const newMatch = () => ({
   chosen: '',
   guess: '',
 });
+
+export const getWord = state => state.word;
+export const getWordBank = state => state.wordBank;
+export const createWordArray = state => getWord(state).split('');
+export const getChosen = state => state.chosen;
+export const getLimbCount = state => state.limbCount;
+
+export const getGameState = state => {
+  const wordBank = getWordBank(state);
+  const chosen = getChosen(state);
+  
+  if(!wordBank) return GAME_STATE.BLANK;
+  const wordArray = createWordArray(state);
+
+  if(wordArray.every(letter => chosen.includes(letter))) return GAME_STATE.WIN;
+  
+  const limbCount = getLimbCount(state);
+  if(limbCount === 6) return GAME_STATE.LOSE;
+
+  return GAME_STATE.PLAYING;
+};
 
 export function handleGame(state = newMatch(), {  type, payload  }) {
   switch(type) {

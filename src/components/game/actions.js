@@ -1,4 +1,4 @@
-import { NEW_GAME, NEW_ROUND, NEW_GUESS, TALLY_ROUND } from './reducers';
+import { NEW_GAME, NEW_ROUND, NEW_GUESS, TALLY_ROUND, getGameState } from './reducers';
 import { gameWords } from '../../words';
 
 const copyGameWords = () => gameWords.slice();
@@ -23,15 +23,19 @@ export const initGame = () => {
   };
 };
 
-export const initRound = (wordBank, result) => {
+export const initRound = wordBank => {
   const gameWords = wordBank;
   const gameWord = getRandomWord(gameWords);
   return (dispatch, getState) => {
 
+    const state = getState();
+    const roundState = getGameState(state);
+
     dispatch({
       type: TALLY_ROUND,
-      payload: result,
+      payload: roundState,
     });
+
 
     dispatch ({
       type: NEW_ROUND,
