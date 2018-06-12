@@ -3,12 +3,13 @@ import {
   word,
   GUESS,
   NEW_GAME,
+  GAME_STATE,
   getGuesses,
   getWord,
   createWordArray,
   findHits,
-  findMisses
-} from './reducers';
+  findMisses,
+  countMisses } from './reducers';
 
 describe('guesses reducer', () => {
   it('has an inital state of an empty array', () => {
@@ -74,5 +75,12 @@ describe('selectors', () => {
     const guesses = ['a', 'd'];
     const misses = findMisses({ word, guesses });
     expect(misses).toEqual(['a']);
+  });
+
+  it('provides the number of misses', () => {
+    const word = 'hidden';
+    const guesses = ['a', 'd', 's'];
+    const misses = countMisses({ word, guesses });
+    expect(misses).toBe(2);
   });
 });

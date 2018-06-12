@@ -17,6 +17,9 @@ export const findMisses = state => {
   return guesses.filter(letter => !word.includes(letter));
 };
 
+export const countMisses = state => findMisses(state).length;
+
+
 export function guesses(state = [], { type, payload }) {
   switch(type) {
     case GUESS:
