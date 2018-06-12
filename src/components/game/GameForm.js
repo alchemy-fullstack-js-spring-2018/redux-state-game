@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
-import Man from './Man';
-import Letters from './Letters';
-import GameStatus from './GameStatus';
+import PropTypes from 'prop-types';
+
+
 
 export default class GameForm extends Component {
+
+  state = {
+    guess: '',
+  }
+
+  static propTypes = {
+    onGuess: PropTypes.func.isRequired
+  };
+
+  handleChange = ({ target }) => {
+    this.setState(({ guess: target.value }, ()=> {
+      this.props.onGuess(target.value);
+    }));
+  };
+
   render() {
+    const { guess } = this.state;
+
     return (
       <section>
-        <Man />
-        <Letters />
-        <GameStatus />
+        Guess a letter:
+        <input type="text" maxLength="1" value={guess} onChange={this.handleChange}/>
       </section>
     );
   }
