@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { makeGuess } from './actions';
 
 
-class GameForm extends Component {
+class GameStatus extends Component {
 
   state = {
     guess: '',
@@ -65,4 +65,4 @@ export default connect(
     chosen: state.handleGame.chosen,
   }),
   { makeGuess }
-)(GameForm);
+)(GameStatus);

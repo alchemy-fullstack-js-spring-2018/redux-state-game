@@ -1,4 +1,4 @@
-import { NEW_GAME, NEW_ROUND, NEW_GUESS, getGameState, getGuessed } from './reducers';
+import { NEW_GAME, NEW_ROUND, NEW_GUESS, TALLY_ROUND, getGameState } from './reducers';
 import { gameWords } from '../../words';
 
 const copyGameWords = () => gameWords.slice();
@@ -10,34 +10,36 @@ const getRandomWord = (wordBank) => {
   return gameWord; //return the word we picked.
 };
 
-export const newGame = () => {
+export const initGame = () => {
   const gameWords = copyGameWords();
   const gameWord = getRandomWord(gameWords);
-    
-  return (dispatch) => {
-    dispatch({
-      type: NEW_GAME,
-      payload: {
-        wordBank: gameWords,
-        word: gameWord,
-      }
-    });
+  
+  return {
+    type: NEW_GAME,
+    payload: {
+      wordBank: gameWords,
+      word: gameWord,
+    }
   };
 };
 
-export const newRound = () => {
-  const gameWords = copyGameWords();
+export const initRound = wordBank => {
+  const gameWords = wordBank;
   const gameWord = getRandomWord(gameWords);
-      
   return (dispatch, getState) => {
 
     const state = getState();
     const roundState = getGameState(state);
 
     dispatch({
+      type: TALLY_ROUND,
+      payload: roundState,
+    });
+
+
+    dispatch ({
       type: NEW_ROUND,
       payload: {
-        gameState: roundState,
         wordBank: gameWords,
         word: gameWord,
       }
@@ -45,12 +47,12 @@ export const newRound = () => {
   };
 };
 
-export const newGuess = letter => {
-  const guessed = getGuessed();
-  return guessed.includes(letter) ? (dispatch) => {
-    dispatch({
-      type: NEW_GUESS,
-      payload: letter
-    });
-  } : null;
-};
+export const makeGuess = (letter, chosen) => {
+  if(!chosen.includes(letter)) chosen.push(letter);
+  else return null;
+
+  return {
+    type: NEW_GUESS,
+    payload: chosen
+  };
+}; 

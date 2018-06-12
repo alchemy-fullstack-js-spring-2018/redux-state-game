@@ -6,7 +6,7 @@ export default class App extends Component {
     return (
       <main>
         <h1>Hangman</h1>
-        <Game/>
+        <Game />
       </main>
     );
   }

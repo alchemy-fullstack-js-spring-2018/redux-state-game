@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
-import { handleGame, tally } from './components/game/reducers';
+import { guessed, word, wordBank, tally } from './components/game/reducers';
 
 const rootReducer = combineReducers({
-  handleGame,
+  guessed,
+  word,
+  wordBank,
   tally
 });
 
