@@ -80,11 +80,10 @@ describe('Testing user guessed', () => {
       type: NEW_GUESS,
       payload:{  
         word: 'sassy',
-        chosen: 'sassy',
       }
     });
 
-    const expected = { word: 'sassy' }; 
+    const expected =  ['s', 'a', 's', 's', 'y', { 'word': 'sassy' }]; 
     expect(state).toEqual(expected);
   });
 });
