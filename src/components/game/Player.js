@@ -11,7 +11,6 @@ class Player extends PureComponent {
   static propTypes = {
     index: PropTypes.number.isRequired,
     selection: PropTypes.object,
-    // choices: PropTypes.array,
     makeChoice: PropTypes.func.isRequired
   };
 
