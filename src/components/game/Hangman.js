@@ -19,12 +19,12 @@ export default class Hangman extends PureComponent {
     return (
       <section>
         {!!missesCount || <img src={gallows}/>}
-        {!!(missesCount === 1) && <img src={one}/>}
-        {!!(missesCount === 2) && <img src={two}/>}
-        {!!(missesCount === 3) && <img src={three}/>}
-        {!!(missesCount === 4) && <img src={four}/>}
-        {!!(missesCount === 5) && <img src={five}/>}
-        {!!(missesCount === 6) && <img src={full}/>}
+        {missesCount === 1 && <img src={one}/>}
+        {missesCount === 2 && <img src={two}/>}
+        {missesCount === 3 && <img src={three}/>}
+        {missesCount === 4 && <img src={four}/>}
+        {missesCount === 5 && <img src={five}/>}
+        {missesCount === 6 && <img src={full}/>}
       </section>
     );
   }
