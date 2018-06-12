@@ -18,8 +18,17 @@ export const getRoundState = state => {
 };
 
 const initSelections = () => [];
-export function selections(state = initSelections(), { type, payload}) {
+export function selections(state = initSelections(), { type, payload }) {
   switch (type) {
+    case SELECTION: {
+      const copy = [...state];
+      const { name, hp, attack } = payload;
+      copy[payload.index] = { name, hp, attack };
+      return copy;
+    }
+    case NEW_ROUND: {
+      return initSelections();
+    }
     default:
       return state;
   }
