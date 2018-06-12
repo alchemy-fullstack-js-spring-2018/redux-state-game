@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Hangman from './Hangman';
 import Letters from './Letters';
-// import GameStatus from './GameStatus';
+import GameStatus from './GameStatus';
 
 export default class Game extends Component {
 
@@ -11,6 +11,7 @@ export default class Game extends Component {
       <section>
         <Hangman />
         <Letters />
+        <GameStatus />
       </section>
     );
   }

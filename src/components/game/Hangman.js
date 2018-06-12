@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Limb from './Limb';
 import { limbImages } from '../../../assets/images';
-import { findMisses } from './reducers';
+import { findMisses, getGameState } from './reducers';
+import styles from './Hangman.css';
+import Limb from './Limb';
 
 const limbs = [
   {  type: 'head', image: limbImages[0] },
@@ -17,21 +18,27 @@ const limbs = [
 class Hangman extends Component {
 
     static propTypes = {
-      misses: PropTypes.array.isRequired
+      misses: PropTypes.array.isRequired,
+      gameState: PropTypes.any.isRequired
     };
 
     render() {
-      const { misses } = this.props;
+      const { misses, gameState } = this.props;
       const missed = misses.length;
       const shownLimbs = limbs.slice(0, missed);
+      const limbsRemaining = 6 - missed;
 
       return (
-        <section>
-          {/* i am a scaffold */}
-          {shownLimbs.map((limb, index) => <Limb
-            key= {index}
-            data= {limb}
-          />)}
+        <section className={styles.hangman}>
+          <div id="limbs">
+            {shownLimbs.map((limb, index) => <Limb
+              key= {index}
+              data= {limb}
+            />)}
+          </div>
+          <div id="status">
+            {gameState === 'PLAYING' ? `${limbsRemaining} out of 6` : null}
+          </div>
         </section>
       );
     }
@@ -39,7 +46,8 @@ class Hangman extends Component {
 
 export default connect(
   state => ({
-    misses: findMisses(state)
+    misses: findMisses(state),
+    gameState: findMisses(state)
   }),
   null
 )(Hangman);
