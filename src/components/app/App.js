@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import Game from '../game/Game';
 
-class App extends Component {
+export default class App extends PureComponent {
   render() {
     return (
       <div>
         <h1>Tasha and Steele game</h1>
+        <Game/>
       </div>
     );
   }
 }
-
-export default App;
