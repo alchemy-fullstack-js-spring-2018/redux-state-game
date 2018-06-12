@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Hangman from './Hangman';
 import MysteryWord from './MysteryWord';
@@ -8,6 +9,16 @@ import { getGameState, createWordArray, countMisses, findHits, findMisses } from
 import { initiateGame, addGuess } from './actions';
 
 class Game extends PureComponent {
+  static propTypes = {
+    gameState: PropTypes.string.isRequired,
+    initiateGame: PropTypes.func.isRequired,
+    wordArray: PropTypes.array,
+    hits: PropTypes.array,
+    misses: PropTypes.array,
+    missesCount: PropTypes.number,
+    addGuess: PropTypes.func.isRequired
+  };
+  
   render() {
     return (
       <section>
