@@ -11,3 +11,11 @@ export function guesses(state = [], { type, payload }) {
       return state;
   }
 }
+
+export function word(state = '', { type, payload }) {
+  switch(type) {
+
+    default:
+      return state;
+  }
+}

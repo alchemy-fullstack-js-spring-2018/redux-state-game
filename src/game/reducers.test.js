@@ -1,5 +1,6 @@
 import {
   guesses,
+  word,
   GUESS,
   NEW_GAME
 } from './reducers';
@@ -23,4 +24,12 @@ describe('guesses reducer', () => {
     const state = guesses(['a', 'b'], { type: NEW_GAME });
     expect(state).toEqual([]);
   });
+});
+
+describe('word reducer', () => {
+  it('has an initial state of an empty string', () => {
+    const state = word(undefined, {});
+    expect(state).toEqual('');
+  });
+
 });
