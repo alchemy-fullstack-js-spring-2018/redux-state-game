@@ -1,6 +1,7 @@
 import {
   guesses,
-  GUESS
+  GUESS,
+  NEW_GAME
 } from './reducers';
 
 describe('guesses reducer', () => {
@@ -16,5 +17,10 @@ describe('guesses reducer', () => {
     });
 
     expect(state).toEqual(['a']);
+  });
+
+  it('resets to an empty array for a new game', () => {
+    const state = guesses(['a', 'b'], { type: NEW_GAME });
+    expect(state).toEqual([]);
   });
 });
