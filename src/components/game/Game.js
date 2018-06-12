@@ -5,8 +5,10 @@ import Hangman from './Hangman';
 import MysteryWord from './MysteryWord';
 import WrongLetters from './WrongLetters';
 // import LetterInput from './LetterInput';
-import { getGameState, createWordArray, countMisses, findHits, findMisses } from './reducers';
+import { getGameState, createWordArray, countMisses, findHits, findMisses, GAME_STATE } from './reducers';
 import { initiateGame, addGuess } from './actions';
+
+const { PLAYING, WIN, LOSE, EMPTY } = GAME_STATE;
 
 class Game extends PureComponent {
   static propTypes = {
@@ -30,7 +32,7 @@ class Game extends PureComponent {
   };
   
   render() {
-    const { initiateGame, wordArray, missesCount, hits, misses } = this.props;
+    const { initiateGame, wordArray, missesCount, hits, misses, gameState } = this.props;
     const { entry } = this.state;
 
     return (
@@ -38,11 +40,14 @@ class Game extends PureComponent {
         <button onClick={initiateGame}>New Game</button>
         <Hangman missesCount={missesCount}/>
         <MysteryWord hits={hits} wordArray={wordArray}/>
-        <WrongLetters misses={misses}/>
-        {/* <LetterInput/> */}
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" maxLength="1" value={entry} onChange={({ target }) => this.setState({ entry: target.value.toUpperCase() })}/>
-        </form>
+        {gameState === PLAYING &&
+        <div>
+          <WrongLetters misses={misses}/>
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" maxLength="1" value={entry} onChange={({ target }) => this.setState({ entry: target.value.toUpperCase() })}/>
+          </form>
+        </div>
+        }
       </section>
     );
   }
