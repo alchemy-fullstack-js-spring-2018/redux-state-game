@@ -96,4 +96,8 @@ describe('selectors', () => {
   it('gets a game state of LOSE', () => {
     expect(getGameState({ word: 'dog', guesses: ['d', 'u', 'v', 'w', 'x', 'y', 'z'] })).toBe(GAME_STATE.LOSE);
   });
+  
+  it('gets a game state of PLAYING', () => {
+    expect(getGameState({ word: 'dog', guesses: ['d', 'o'] })).toBe(GAME_STATE.PLAYING);
+  });
 });

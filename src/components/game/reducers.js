@@ -37,6 +37,8 @@ export const getGameState = state => {
 
   const missCount = countMisses(state);
   if(missCount === 6) return GAME_STATE.LOSE;
+
+  return GAME_STATE.PLAYING;
 };
 
 export function guesses(state = [], { type, payload }) {
