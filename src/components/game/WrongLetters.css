@@ -1,6 +1,9 @@
 :local(.wrong-letters) {
-  width: fit-content;
+  width: 24em;
   display: flex;
+  border: 2pt solid;
+  margin-top: 5px;
+  padding: 5px;
   h2 {
     font-size: 2em;
     text-align: center;

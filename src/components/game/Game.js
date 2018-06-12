@@ -7,6 +7,7 @@ import WrongLetters from './WrongLetters';
 // import LetterInput from './LetterInput';
 import { getGameState, createWordArray, countMisses, findHits, findMisses, GAME_STATE, getWord } from './reducers';
 import { initiateGame, addGuess } from './actions';
+import styles from './Game.css';
 
 const { PLAYING, WIN, LOSE, EMPTY } = GAME_STATE;
 
@@ -44,18 +45,18 @@ class Game extends PureComponent {
     const { entry } = this.state;
 
     return (
-      <section>
-        <h2>{message[gameState]}</h2>
-        {gameState === LOSE && <span>The word was {word}</span>}
-        <button onClick={initiateGame}>New Game</button>
-        <Hangman missesCount={missesCount}/>
-        <MysteryWord hits={hits} wordArray={wordArray}/>
-        {gameState !== EMPTY && <WrongLetters misses={misses}/>}
+      <section className={styles.game}>
+        <h2 className={gameState.toLowerCase()}>{message[gameState]}</h2>
         {gameState === PLAYING &&
           <form onSubmit={this.handleSubmit}>
             <input type="text" maxLength="1" value={entry} onChange={({ target }) => this.setState({ entry: target.value.toUpperCase() })}/>
           </form>
         }
+        {gameState === LOSE && <h3>The word was {word}</h3>}
+        <button onClick={initiateGame}>New Game</button>
+        <Hangman missesCount={missesCount}/>
+        <MysteryWord hits={hits} wordArray={wordArray}/>
+        {gameState !== EMPTY && <WrongLetters misses={misses}/>}
       </section>
     );
   }
