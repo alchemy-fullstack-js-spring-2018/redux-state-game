@@ -4,7 +4,7 @@ export const NEW_GUESS = 'NEW_GUESS';
 export const TALLY_ROUND = 'TALLY_ROUND';
 
 export const GAME_STATE = {
-  BlANK: 'BlANK',
+  BlANK: 'BLANK',
   PLAYING: 'PLAYING',
   WIN: 'WIN',
   LOSE: 'LOSE',
