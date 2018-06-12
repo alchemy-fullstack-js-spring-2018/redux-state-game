@@ -4,22 +4,24 @@ import {
   // ROUND_STATE
 } from './reducers';
 
+
+
 export const poke1 = {
-  name: 'pocketmon', 
+  name: 'bulb', 
   hp: 5, 
-  attack: 500 
+  attack: 2
 };
   
 export const poke2 = {
-  name: 'pocketwomon', 
-  hp: 50, 
-  attack: 50,
+  name: 'char', 
+  hp: 7, 
+  attack: 1,
 };
   
 export const poke3 = {
-  name: 'pocketthem', 
-  hp: 0, 
-  attack: 50,
+  name: 'squirt', 
+  hp: 4, 
+  attack: 3,
 };
 
 const getRandom = () => {
