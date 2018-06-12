@@ -9,7 +9,8 @@ import {
   createWordArray,
   findHits,
   findMisses,
-  countMisses } from './reducers';
+  countMisses,
+  getGameState } from './reducers';
 
 describe('guesses reducer', () => {
   it('has an inital state of an empty array', () => {
@@ -82,5 +83,9 @@ describe('selectors', () => {
     const guesses = ['a', 'd', 's'];
     const misses = countMisses({ word, guesses });
     expect(misses).toBe(2);
+  });
+
+  it('gets a game state of EMPTY', () => {
+    expect(getGameState([])).toBe(GAME_STATE.EMPTY);
   });
 });
