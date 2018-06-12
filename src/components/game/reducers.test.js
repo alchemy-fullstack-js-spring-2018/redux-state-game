@@ -88,4 +88,8 @@ describe('selectors', () => {
   it('gets a game state of EMPTY', () => {
     expect(getGameState([])).toBe(GAME_STATE.EMPTY);
   });
+
+  it('gets a game state of WIN', () => {
+    expect(getGameState({ word: 'dog', guesses: ['a', 'd', 'o', 'g'] })).toBe(GAME_STATE.WIN);
+  });
 });

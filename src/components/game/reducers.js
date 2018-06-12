@@ -27,9 +27,13 @@ export const findMisses = state => {
 export const countMisses = state => findMisses(state).length;
 
 export const getGameState = state => {
+  const guesses = getGuesses(state);
   const word = getWord(state);
   
   if(!word) return GAME_STATE.EMPTY;
+  const wordArray = createWordArray(state);
+
+  if(wordArray.every(letter => guesses.includes(letter))) return GAME_STATE.WIN;
 
 };
 
