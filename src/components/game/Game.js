@@ -10,6 +10,13 @@ import { initiateGame, addGuess } from './actions';
 
 const { PLAYING, WIN, LOSE, EMPTY } = GAME_STATE;
 
+const message = {
+  [PLAYING]: 'Enter a Letter!',
+  [WIN]: 'You Win!',
+  [LOSE]: 'You Lose!',
+  [EMPTY]: 'Press New Game!'
+};
+
 class Game extends PureComponent {
   static propTypes = {
     gameState: PropTypes.string.isRequired,
@@ -37,6 +44,7 @@ class Game extends PureComponent {
 
     return (
       <section>
+        <h2>{message[gameState]}</h2>
         <button onClick={initiateGame}>New Game</button>
         <Hangman missesCount={missesCount}/>
         <MysteryWord hits={hits} wordArray={wordArray}/>
