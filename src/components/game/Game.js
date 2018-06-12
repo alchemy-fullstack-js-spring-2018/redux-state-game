@@ -25,9 +25,8 @@ class Game extends PureComponent {
     return (
       <section>
         <button onClick={initiateGame}>New Game</button>
-        <Hangman/>
+        <Hangman missesCount={missesCount}/>
         <MysteryWord/>
-        <button>New Game</button>
         <WrongLetters/>
         <LetterInput/>
       </section>

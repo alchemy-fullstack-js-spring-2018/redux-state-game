@@ -25,12 +25,14 @@
   },
   "homepage": "https://github.com/kelihansen/redux-state-game#readme",
   "dependencies": {
+    "file-loader": "^1.1.11",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "url-loader": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^8.5.2",
