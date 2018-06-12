@@ -25,15 +25,12 @@ export const getLimbCount = state => state.limbCount;
 export const getGameState = state => {
   const word = getWord(state);
   const chosen = getChosen(state);
+  const wordArray = createWordArray(state);
+  const limbCount = getLimbCount(state);
   
   if(!word) return GAME_STATE.BLANK;
-  const wordArray = createWordArray(state);
-
-  const limbCount = getLimbCount(state);
   if(limbCount >= 6) return GAME_STATE.LOSE;
-
   if(wordArray.every(letter => chosen.includes(letter))) return GAME_STATE.WIN;
-
   return GAME_STATE.PLAYING;
 };
 
