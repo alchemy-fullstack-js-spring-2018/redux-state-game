@@ -1,4 +1,4 @@
-import { getGameState, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, TALLY_ROUND, createWordArray, GAME_STATE } from './reducers';
+import { tally, initMatch, getGameState, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, TALLY_ROUND, createWordArray, GAME_STATE } from './reducers';
 
 const firstGameState = {
     limbCount: 2,
@@ -51,3 +51,11 @@ it('has a default value of an object with properties', () => {
   });
 
 });
+
+// describe('testing whether the Game tally is tallying', () => {
+  
+//     it('checks to see if game lost, Tally lose goes up by one', () => {
+//         const state = tally(secondGameState, {});
+//         expect(state).toEqual()
+//     });
+// });
