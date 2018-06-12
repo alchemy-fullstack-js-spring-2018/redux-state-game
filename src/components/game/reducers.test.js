@@ -3,19 +3,19 @@ import { tally, initMatch, getGameState, guessed, newMatch, handleGame, NEW_GAME
 const firstGameState = {
   limbCount: 2,
   word: 'solatious',
-  chosen: 'solatious',
+  guessed: 'solatious',
 };
 
 const secondGameState = {
   limbCount: 6,
   word: 'sassy',
-  chosen: 'sassy',
+  guessed: 'sassy',
 };
 
 const thirdGameState = {
   limbCount: 5,
   word: 'brassy',
-  chosen: 'brass',
+  guessed: 'brass',
 };
 describe(' testing reducer function getGameState', () => {
 
@@ -74,16 +74,14 @@ describe('testing whether the Game tally is tallying', () => {
 
 describe('Testing user guessed', () => {
 
-  it('tests whether guest word is returned', () => {
+  it('tests whether guessed letters are returned', () => {
 
-    const state = guessed(secondGameState.word, {
+    const state = guessed(secondGameState.guessed, {
       type: NEW_GUESS,
-      payload:{  
-        word: 'sassy',
-      }
+      payload: 'a'
     });
 
-    const expected =  ['s', 'a', 's', 's', 'y', { 'word': 'sassy' }]; 
+    const expected =  ['s', 'a', 's', 's', 'y', 'a']; 
     expect(state).toEqual(expected);
   });
 });
