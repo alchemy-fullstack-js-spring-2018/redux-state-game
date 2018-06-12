@@ -24,7 +24,13 @@ class GameResults extends Component {
     const { roundState, newRound } = this.props;
     return (
       <section>
-        <p>{message[roundState]}</p>
+        {/* <p>{message[roundState]}</p> */}
+        { roundState === CHOOSING || 
+          <div>
+            {message[roundState]}
+            <button onClick={() => attackPlayer2(selection)}>Attack</button>
+          </div>
+        }
         { roundState === CHOOSING || PLAYING ||
           <button onClick={newRound}>Play Again</button>
         }

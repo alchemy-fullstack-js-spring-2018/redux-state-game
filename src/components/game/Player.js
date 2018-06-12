@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPlayerSelection } from './reducers';
-import { makeChoice } from './actions';
+import { makeChoice, attackPlayer2 } from './actions';
 import { choices } from './Choices';
 import styles from './Player.css';
 
@@ -22,7 +22,8 @@ class Player extends PureComponent {
       <div className={styles.player}>
         <h3>Player {index + 1}</h3>
         { selection
-          ? <p><img src={selection.image}/>{selection.hp}</p>
+          ? <div><img src={selection.image}/>{selection.hp}
+          </div> 
           : index === 0 && choices.map(choice => {
             return (
               <a 
