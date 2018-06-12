@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { makeGuess } from './actions';
-
+import { newGame, newGuess } from './actions';
+import { getGuessed, findMisses, getGameState } from './reducers';
 
 class GameStatus extends Component {
 
@@ -12,11 +12,11 @@ class GameStatus extends Component {
   }
 
   static propTypes = {
-    onGuess: PropTypes.func.isRequired,
-    makeGuess: PropTypes.func.isRequired,
-    limbCount: PropTypes.number,
-    chosen: PropTypes.array,
-    word: PropTypes.string
+    newGame: PropTypes.func.isRequired,
+    newGuess: PropTypes.func.isRequired,
+    guessed: PropTypes.array.isRequired,
+    misses: PropTypes.array.isRequired,
+    gameState: PropTypes.string.isRequired,
   };
 
   handleChange = ({ target }) => {
@@ -26,13 +26,14 @@ class GameStatus extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const guess = this.state.guess;
-    if(this.props.chosen.includes(guess)) { 
+    const guessed = this.props.guessed;
+    if(guessed.includes(guess)) { 
       return this.alreadyGuessed(); }
+
     this.setState(({ guess: '', alreadyGuessed: false }), () => {
-      this.props.makeGuess(guess, this.props.chosen);
+      this.props.newGuess(guess, guessed);
     });
   };
-
 
   alreadyGuessed = () => {
     this.setState(({ alreadyGuessed: true }));
@@ -40,19 +41,23 @@ class GameStatus extends Component {
 
   render() {
     const { guess, alreadyGuessed } = this.state;
-    const { limbCount, chosen } = this.props;
+    const { newGame, misses, gameState } = this.props;
+
+    const guessLetter = (
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="letter-guess">Letter :
+          <input type="text" maxLength="1" value={guess} onChange={this.handleChange}/>
+          <button type="submit">Guess!</button>
+        </label>
+      </form>);
 
     return (
       <section>
-        <span>{limbCount} out of 6 limbs remaining!</span>
-        {chosen ? chosen.map((letter, index) => (<div key={index}>{letter}</div>)) : null}
+        {misses ? misses.map((letter, index) => (<div key={index}>{letter}</div>)) : null}
         <br />
-        Guess a letter:
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" maxLength="1" value={guess} onChange={this.handleChange}/>
-          <button type="submit">Guess!</button>
-        </form>
+        {gameState === 'PLAYING' ? guessLetter : null}
         {alreadyGuessed ? <span> You already guessed {guess}! </span> : null}
+        <button onClick={newGame}>New Game</button>
       </section>
     );
   }
@@ -60,9 +65,9 @@ class GameStatus extends Component {
 
 export default connect(
   state => ({
-    word: state.handleGame.word,
-    limbCount: state.handleGame.limbCount,
-    chosen: state.handleGame.chosen,
+    guessed: getGuessed(state),
+    misses: findMisses(state),
+    gameState: getGameState(state),
   }),
-  { makeGuess }
+  { newGame, newGuess }
 )(GameStatus);

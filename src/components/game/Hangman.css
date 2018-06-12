@@ -1,0 +1,7 @@
+
+:local(.hangman) {
+    width: 100vw;
+    height: 20vh;
+    background-image: url('../../../assets/background.png');
+    background-size: cover; 
+}

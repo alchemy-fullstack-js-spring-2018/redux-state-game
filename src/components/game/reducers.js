@@ -9,7 +9,7 @@ export const getLimbCount = state => state.limbCount;
 export const getGuessed = state => state.guessed;
 
 export const GAME_STATE = {
-  BlANK: 'BLANK',
+  BLANK: 'BLANK',
   PLAYING: 'PLAYING',
   WIN: 'WIN',
   LOSE: 'LOSE',
@@ -58,15 +58,9 @@ export function guessed(state = [], { type, payload }) {
 export function word(state = '', { type, payload }) {
   switch(type) {
     case NEW_GAME:
-      return {
-        ...state,
-        word: payload.word
-      };
+      return payload.word;
     case NEW_ROUND:
-      return {
-        ...state,
-        word: payload.word
-      };
+      return payload.word;
     default:
       return state;
   }
@@ -75,15 +69,9 @@ export function word(state = '', { type, payload }) {
 export function wordBank(state = [], { type, payload }) {
   switch(type) {
     case NEW_GAME:
-      return {
-        ...state,
-        wordBank: payload.wordBank,
-      };
+      return payload.wordBank;
     case NEW_ROUND:
-      return {
-        ...state,
-        wordBank: payload.wordBank,
-      };
+      return payload.wordBank;
     default:
       return state;
   }
