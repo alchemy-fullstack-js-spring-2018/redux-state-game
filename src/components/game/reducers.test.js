@@ -21,7 +21,7 @@ describe('guesses reducer', () => {
   it('records a guess', () => {
     const state = guesses([], {
       type: GUESS,
-      payload: { guess: 'a' }
+      payload: 'a'
     });
 
     expect(state).toEqual(['a']);
