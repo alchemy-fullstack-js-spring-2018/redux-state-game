@@ -12,6 +12,13 @@ const secondGameState = {
     chosen: 'sassy',
 }
 
+const thirdGameState = {
+    limbCount: 5,
+    word: 'brassy',
+    chosen: 'brass',
+}
+describe(' testing reducer function getGameState', () => {
+
 it('has a default value of an object with properties', () => {
     const state = newMatch(undefined, {});
     expect(state).toEqual({
@@ -37,3 +44,10 @@ it('has a default value of an object with properties', () => {
     const state = getGameState(secondGameState, {});
     expect(state).toEqual(GAME_STATE.LOSE);
   });
+
+  it('returns currently playing gameState when word is not guessed and limbs are below 6', () => {
+      const state = getGameState(thirdGameState, {});
+      expect(state).toEqual(GAME_STATE.PLAYING);
+  });
+
+});
