@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Hangman from './Hangman';
 import MysteryWord from './MysteryWord';
 import WrongLetters from './WrongLetters';
-// import LetterInput from './LetterInput';
 import { getGameState, createWordArray, countMisses, findHits, findMisses, GAME_STATE, getWord } from './reducers';
 import { initiateGame, addGuess } from './actions';
 import styles from './Game.css';
