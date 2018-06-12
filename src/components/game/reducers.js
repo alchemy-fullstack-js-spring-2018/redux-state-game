@@ -18,22 +18,21 @@ export const newMatch = () => ({
 });
 
 export const getWord = state => state.word;
-export const getWordBank = state => state.wordBank;
 export const createWordArray = state => getWord(state).split('');
 export const getChosen = state => state.chosen;
 export const getLimbCount = state => state.limbCount;
 
 export const getGameState = state => {
-  const wordBank = getWordBank(state);
+  const word = getWord(state);
   const chosen = getChosen(state);
   
-  if(!wordBank) return GAME_STATE.BLANK;
+  if(!word) return GAME_STATE.BLANK;
   const wordArray = createWordArray(state);
 
-  if(wordArray.every(letter => chosen.includes(letter))) return GAME_STATE.WIN;
-  
   const limbCount = getLimbCount(state);
-  if(limbCount === 6) return GAME_STATE.LOSE;
+  if(limbCount >= 6) return GAME_STATE.LOSE;
+
+  if(wordArray.every(letter => chosen.includes(letter))) return GAME_STATE.WIN;
 
   return GAME_STATE.PLAYING;
 };
