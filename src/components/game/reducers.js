@@ -28,8 +28,8 @@ export function selections(state = initSelections(), { type, payload }) {
   switch (type) {
     case SELECTION: {
       const copy = [...state];
-      const { name, hp, attack } = payload.choice;
-      copy[payload.index] = { name, hp, attack };
+      const { name, hp, attack, image } = payload.choice;
+      copy[payload.index] = { name, hp, attack, image };
       return copy;
     }
     case NEW_ROUND: {

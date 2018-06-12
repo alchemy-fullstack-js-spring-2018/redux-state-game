@@ -17,22 +17,20 @@ class Player extends PureComponent {
 
   render() {
     const { index, selection, makeChoice } = this.props;
-    console.log('SELECTION', selection);
-    console.log('CHOICES', choices);
 
     return (
       <div className={styles.player}>
         <h3>Player {index + 1}</h3>
         { selection
-          ? <p>{selection.name}{selection.hp}</p>
+          ? <p><img src={selection.image}/>{selection.hp}</p>
           : index === 0 && choices.map(choice => {
             return (
-              <button 
+              <a 
                 key={choice.name} 
                 onClick={() => makeChoice(choice)}
               >
-                {choice.name}
-              </button>
+                <img src={choice.image}/>
+              </a>
             );
           })
         }
