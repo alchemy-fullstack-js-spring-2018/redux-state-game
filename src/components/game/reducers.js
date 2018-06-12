@@ -5,6 +5,12 @@ export const getGuesses = state => state.guesses;
 export const getWord = state => state.word;
 export const createWordArray = state => getWord(state).split('');
 
+export const findHits = state => {
+  const guesses = getGuesses(state);
+  const word = getWord(state);
+  return guesses.filter(letter => word.includes(letter));
+};
+
 export function guesses(state = [], { type, payload }) {
   switch(type) {
     case GUESS:

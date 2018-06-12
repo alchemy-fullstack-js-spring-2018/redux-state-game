@@ -5,7 +5,8 @@ import {
   NEW_GAME,
   getGuesses,
   getWord,
-  createWordArray
+  createWordArray,
+  findHits
 } from './reducers';
 
 describe('guesses reducer', () => {
@@ -58,5 +59,12 @@ describe('selectors', () => {
     const word = 'unknown';
     const array = createWordArray({ word });
     expect(array).toEqual(['u', 'n', 'k', 'n', 'o', 'w', 'n']);
+  });
+
+  it('provides an array of guesses that are in the mystery word', () => {
+    const word = 'hidden';
+    const guesses = ['a', 'd'];
+    const hits = findHits({ word, guesses });
+    expect(hits).toEqual(['d']);
   });
 });
