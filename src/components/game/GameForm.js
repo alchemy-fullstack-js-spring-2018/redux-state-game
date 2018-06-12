@@ -1,13 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { makeGuess } from './actions';
 
 
-class GameForm extends PureComponent {
+class GameForm extends Component {
 
   state = {
     guess: '',
+    alreadyGuessed: false,
   }
 
   static propTypes = {
@@ -19,13 +20,26 @@ class GameForm extends PureComponent {
   };
 
   handleChange = ({ target }) => {
-    this.setState(({ guess: target.value }), () => {
-      this.props.makeGuess(target.value, this.props.chosen);
+    this.setState({ guess: target.value });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const guess = this.state.guess;
+    if(this.props.chosen.includes(guess)) { 
+      return this.alreadyGuessed(); }
+    this.setState(({ guess: '', alreadyGuessed: false }), () => {
+      this.props.makeGuess(guess, this.props.chosen);
     });
   };
 
+
+  alreadyGuessed = () => {
+    this.setState(({ alreadyGuessed: true }));
+  }
+
   render() {
-    const { guess } = this.state;
+    const { guess, alreadyGuessed } = this.state;
     const { limbCount, chosen } = this.props;
 
     return (
@@ -34,7 +48,11 @@ class GameForm extends PureComponent {
         {chosen ? chosen.map((letter, index) => (<div key={index}>{letter}</div>)) : null}
         <br />
         Guess a letter:
-        <input type="text" maxLength="1" value={guess} onChange={this.handleChange}/>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" maxLength="1" value={guess} onChange={this.handleChange}/>
+          <button type="submit">Guess!</button>
+        </form>
+        {alreadyGuessed ? <span> You already guessed {guess}! </span> : null}
       </section>
     );
   }

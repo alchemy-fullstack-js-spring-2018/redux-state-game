@@ -14,7 +14,6 @@ export const newMatch = () => ({
   limbCount: 0,
   word: '',
   chosen: [],
-  guess: '',
 });
 
 export const getWord = state => state.word;
@@ -63,6 +62,7 @@ export function handleGame(state = newMatch(), {  type, payload  }) {
       return state;
   }
 }
+
 export const initMatch = () => ({
   [GAME_STATE.WIN]: 0,
   [GAME_STATE.LOSE]: 0,
