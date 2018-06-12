@@ -2,6 +2,7 @@ export const GUESS = 'GUESS';
 export const NEW_GAME = 'NEW_GAME';
 
 export const getGuesses = state => state.guesses;
+export const getWord = state => state.word;
 
 
 export function guesses(state = [], { type, payload }) {

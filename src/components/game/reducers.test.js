@@ -3,7 +3,8 @@ import {
   word,
   GUESS,
   NEW_GAME,
-  getGuesses
+  getGuesses,
+  getWord
 } from './reducers';
 
 describe('guesses reducer', () => {
@@ -44,5 +45,11 @@ describe('selectors', () => {
     const guesses = ['a', 'b'];
     const got = getGuesses({ guesses });
     expect(got).toBe(guesses);
+  });
+
+  it('gets the mystery word', () => {
+    const word = 'secret';
+    const got = getWord({ word });
+    expect(got).toBe(word);
   });
 });
