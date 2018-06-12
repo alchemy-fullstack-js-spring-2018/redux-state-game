@@ -1,4 +1,4 @@
-import { tally, initMatch, getGameState, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, TALLY_ROUND, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
+import { tally, initMatch, getGameState, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
 
 const firstGameState = {
   limbCount: 2,
@@ -20,20 +20,9 @@ const thirdGameState = {
 describe(' testing reducer function getGameState', () => {
 
   it('has a default value of an object with properties', () => {
-    const state = newMatch(undefined, {});
-    expect(state).toEqual({
-      limbCount: 0,
-      word: '',
-      chosen: '',
-      guess: '',    });
+    const state = getGameState(secondGameState, {});
+    expect(state).toEqual(GAME_STATE.LOSE);
   });
-
-  //   it('creates a word array out of avaiable words', () => {
-  //       word = ['solatious', 'redneck']
-  //       const state = createWordArray(getWord(state), [])
-  //       expect(state).toEqual(['solatious', 'redneck']);
-
-  //   });
 
   it('make sure returning a valid Game State', () => {
     const state = getGameState(firstGameState, {});
@@ -52,10 +41,18 @@ describe(' testing reducer function getGameState', () => {
 
 });
 
-// describe('testing whether the Game tally is tallying', () => {
+describe('testing whether the Game tally is tallying', () => {
   
-//     it('checks to see if game lost, Tally lose goes up by one', () => {
-//         const state = tally(secondGameState, {});
-//         expect(state).toEqual()
-//     });
-// });
+  it('checks to see if game lost, Tally lose goes up by one', () => {
+    const state = tally(initMatch(), {
+      type: NEW_ROUND,
+      payload: GAME_STATE.WIN
+    });
+    const expected = {
+      [GAME_STATE.WIN]: 1,
+      [GAME_STATE.LOSE]: 0,
+    };
+
+    expect(state).toEqual(expected);
+  });
+});

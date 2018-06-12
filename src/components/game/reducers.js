@@ -89,7 +89,7 @@ export function wordBank(state = [], { type, payload }) {
   }
 }
 
-const initMatch = () => ({
+export const initMatch = () => ({
   [GAME_STATE.WIN]: 0,
   [GAME_STATE.LOSE]: 0,
 });
