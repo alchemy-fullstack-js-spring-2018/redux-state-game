@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Hangman from './Hangman';
 import MysteryWord from './MysteryWord';
 import WrongLetters from './WrongLetters';
-import LetterInput from './LetterInput';
+// import LetterInput from './LetterInput';
 import { getGameState, createWordArray, countMisses, findHits, findMisses } from './reducers';
 import { initiateGame, addGuess } from './actions';
 
@@ -26,9 +26,9 @@ class Game extends PureComponent {
       <section>
         <button onClick={initiateGame}>New Game</button>
         <Hangman missesCount={missesCount}/>
-        <MysteryWord/>
-        <WrongLetters/>
-        <LetterInput/>
+        <MysteryWord hits={hits} wordArray={wordArray}/>
+        {/* <WrongLetters/> */}
+        {/* <LetterInput/> */}
       </section>
     );
   }
