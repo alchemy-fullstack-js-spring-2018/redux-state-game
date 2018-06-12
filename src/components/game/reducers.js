@@ -24,10 +24,10 @@ export const getChosen = state => state.chosen;
 export const getLimbCount = state => state.limbCount;
 
 export const getGameState = state => {
-  const wordBank = getWordBank(state);
+  const word = getWord(state);
   const chosen = getChosen(state);
   
-  if(!wordBank) return GAME_STATE.BLANK;
+  if(!word) return GAME_STATE.BLANK;
   const wordArray = createWordArray(state);
 
   if(wordArray.every(letter => chosen.includes(letter))) return GAME_STATE.WIN;
