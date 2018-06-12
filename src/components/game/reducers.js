@@ -16,28 +16,36 @@ export const newMatch = () => ({
   limbCount: 0,
   word: '',
   chosen: '',
-  round: 0,
   guess: '',
 });
 
 const copyGameWords = () => gameWords.slice();
 
+const getRandomWord = (wordBank) => {
+  const index = Math.floor(Math.random() * wordBank.length);
+  const gameWord = wordBank[index].toUpperCase(); //saving the word 
+  wordBank.splice(index, 1); //remove it from the array
+  return gameWord; //return the word we picked.
+};
+
 export function handleGame(state = newMatch(), {  type, payload  }) {
   switch(type) {
     case NEW_GAME: {
       const gameWords = copyGameWords();
+      const gameWord = getRandomWord(gameWords);
       return {
         ...state,
-        wordBank: gameWords
+        wordBank: gameWords,
+        word: gameWord,
       };
     }
     case NEW_ROUND: {
-      const prevWord = payload.word;
       const prevWordBank = state.wordBank;
+      const gameWord = getRandomWord(prevWordBank); //get random word from previous word bank.
       return {
         ...state,
-        round: payload.round++,
-        wordBank: prevWordBank.filter(word => word !== prevWord),
+        wordBank: prevWordBank,
+        word: gameWord, 
       };
     }
     case NEW_GUESS: {
@@ -49,5 +57,21 @@ export function handleGame(state = newMatch(), {  type, payload  }) {
     }
     default:
       return state;
+  }
+}
+export const initMatch = () => ({
+  [GAME_STATE.WIN]: 0,
+  [GAME_STATE.LOSE]: 0,
+});
+
+export function tally (state = initMatch(), { type, payload }) {
+  switch(type) {
+    case TALLY_ROUND: 
+      return {
+        ...state,
+        [payload]: state[payload] + 1 //adding one to initMatch state.
+      };
+      default:
+        return state;
   }
 }
