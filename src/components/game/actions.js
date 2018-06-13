@@ -46,11 +46,18 @@ export const newRound = () => {
 };
 
 export const newGuess = letter => {
-  const guessed = getGuessed();
-  return guessed.includes(letter) ? (dispatch) => {
-    dispatch({
-      type: NEW_GUESS,
-      payload: letter
-    });
-  } : null;
+  return (dispatch, getState) => {
+    const state = getState();
+    const guessed = getGuessed(state);
+    const guess = letter.toUpperCase();
+
+    if(guessed.includes(guess)){
+      return;
+    } else {
+      dispatch({
+        type: NEW_GUESS,
+        payload: guess
+      });
+    }
+  };
 };
