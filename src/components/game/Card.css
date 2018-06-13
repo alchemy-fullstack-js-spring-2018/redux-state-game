@@ -1,0 +1,13 @@
+:local(.card) {
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 175px;
+}
+
+:local(.card) img {
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+}
