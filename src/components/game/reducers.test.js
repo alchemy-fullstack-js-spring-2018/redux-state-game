@@ -102,10 +102,16 @@ describe('selections reducer', () => {
   });
 });
 
-describe.skip('hp tracking', () => {
+describe('hp tracking', () => {
+
+  it('has empty array for initial state', () => {
+    const state = hpTracker(undefined, {});
+    expect(state).toEqual([]);
+  });
   
   it('reduces hp and gets new state', () => {
-    const hp = hpTracker([poke1, poke2], { type: COUNTER });
-    expect(hp).toEqual();
+    const state = hpTracker([poke1, poke2], { type: COUNTER, payload: 8 });
+    expect(state).toEqual({ state: [poke1, { 'attack': 3, 'hp': 8, 'name': 'pocketwomon' }] });
   });
+
 });

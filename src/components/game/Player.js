@@ -21,12 +21,6 @@ class Player extends PureComponent {
 
     console.log('INDEX', index);
 
-    const gameLogic = (selection, index) => {
-      if(index === 0) {
-        return selection.hp - selection.attack;
-      }
-    };
-
     return (
       <div className={styles.player}>
         <h3>Player {index + 1}</h3>
@@ -44,9 +38,6 @@ class Player extends PureComponent {
             );
           })
         }
-        <div>
-          <button onClick={() => gameLogic(selection)}>Attack2</button>
-        </div>
       </div>
     );
   }

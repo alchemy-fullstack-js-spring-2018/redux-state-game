@@ -45,9 +45,9 @@ const prevState = [];
 export function hpTracker(state = prevState, { type, payload }) {
   switch (type) {
     case COUNTER: {
+      state[1].hp = payload;
       return {
-        ...state,
-        payload: payload.fn
+        state
       };
     }
     default:

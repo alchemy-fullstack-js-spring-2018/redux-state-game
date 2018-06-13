@@ -8,7 +8,8 @@ import styles from './Game.css';
 
 const attackOpponent = (p1, p2) => {
   console.log('ATTACK RESULTS', p1.hp - p2.attack);
-  return p2.hp - p1.attack;
+  const newHp = p1.hp - p2.attack;
+  return p2.hp = newHp;
 };
 
 class Game extends PureComponent {
@@ -20,9 +21,10 @@ class Game extends PureComponent {
 
   render() {
 
-    const { selections, /*makeAttack*/ } = this.props;
+    const { selections, makeAttack } = this.props;
 
     console.log('SELECTIONS', selections);
+    console.log('PLAYER2', selections[1]);
     
     // const attack = attackOpponent(selections[0], selections[1]);
     // console.log('MAKE ATTACK', makeAttack(attack));
@@ -34,9 +36,11 @@ class Game extends PureComponent {
           <Player index={0}/>
           <Player index={1}/>
         </div>
-        <div>
-          <button onClick={() => attackOpponent(selections[0], selections[1])}>Attack</button>
-        </div>
+        { selections === []
+          ?
+          <div></div>
+          : <div><button onClick={() => makeAttack(attackOpponent(selections[0], selections[1]))}>Attack</button></div>
+        }
         <GameResults/>
       </section>
     );

@@ -58,11 +58,11 @@ export const makeChoice = choice => {
   };
 };
 
-export const makeAttack = (fn) => {
+export const makeAttack = (num) => {
   return (dispatch, getState) => {
     dispatch({
       type: COUNTER,
-      payload: { hp: fn }
+      payload: num
     });
 
     const state = getState();
