@@ -6,13 +6,14 @@ export default class Letter extends Component {
 
     static propTypes = {
       letter: PropTypes.string.isRequired,
+      hit: PropTypes.bool.isRequired,
     };
 
     render() {
-      const { letter } = this.props;
+      const { letter, hit } = this.props;
       return (
         <div className={styles.letter}>
-          {letter}
+          <span className={hit ? null : 'hidden'}>{letter}</span>
         </div>
       );
     }

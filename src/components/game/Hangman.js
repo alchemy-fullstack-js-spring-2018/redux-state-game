@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { limbImages } from '../../../assets/images';
+import { limbImages } from '../../constants';
 import { findMisses, getGameState } from './reducers';
 import styles from './Hangman.css';
 import Limb from './Limb';

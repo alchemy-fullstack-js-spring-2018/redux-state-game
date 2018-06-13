@@ -1,5 +1,5 @@
 import { NEW_GAME, NEW_ROUND, NEW_GUESS, getGameState, getGuessed } from './reducers';
-import { gameWords } from '../../words';
+import { gameWords } from '../../constants';
 
 const copyGameWords = () => gameWords.slice();
 
