@@ -47,3 +47,12 @@ export const recordWin = name => {
     payload: name
   };
 };
+
+export const fetchResults = () => {
+  const results = JSON.parse(localStorage.getItem('results')) || [];
+
+  return {
+    type: RESULTS_LOAD,
+    payload: results
+  };
+};

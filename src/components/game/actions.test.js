@@ -1,5 +1,5 @@
 import { GUESS, NEW_GAME, PLAYER_ADD, RESULTS_LOAD, WIN_ADD, PLAYER_SET } from './reducers';
-import { addGuess, initiateGame, setPlayer, recordWin } from './actions';
+import { addGuess, initiateGame, setPlayer, recordWin, fetchResults } from './actions';
 
 describe('actions', () => {
   it('adds a guess', () => {
@@ -33,4 +33,11 @@ describe('actions', () => {
 
 it('adds a win to the current player\'s results', () => {
   expect(recordWin('Keli')).toEqual({ type: WIN_ADD, payload: 'Keli' });
+});
+
+it('loads results from local storage or returns an empty array', () => {
+  localStorage.setItem('results', JSON.stringify([{ name: 'Ryan', games: 2, wins: 1 }]));
+  expect(fetchResults()).toEqual({ type: RESULTS_LOAD, payload: [{ name: 'Ryan', games: 2, wins: 1 }] });
+  localStorage.clear();
+  expect(fetchResults()).toEqual({ type: RESULTS_LOAD, payload: [] });
 });
