@@ -102,7 +102,7 @@ describe('selections reducer', () => {
   });
 });
 
-describe('hp tracking', () => {
+describe.skip('hp tracking', () => {
   
   it('reduces hp and gets new state', () => {
     const hp = hpTracker([poke1, poke2], { type: COUNTER });
