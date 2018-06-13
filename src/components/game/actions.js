@@ -1,7 +1,9 @@
 import {
   SELECTION,
   NEW_ROUND,
-  // ROUND_STATE
+  COUNTER,
+  ROUND_STATE, 
+  getRoundState
 } from './reducers';
 
 function getRandomInt(min, max) {
@@ -56,28 +58,21 @@ export const makeChoice = choice => {
   };
 };
 
-export const makeAttack = attack => {
+export const makeAttack = (fn) => {
   return (dispatch, getState) => {
     dispatch({
       type: COUNTER,
-      payload: { index: 0, attack }
+      payload: { hp: fn }
     });
 
-    dispatch({ 
-      type: ROUND_STATE,
-      payload: { Something}
-    });
-
-    dispatch({
-      type: COUNTER,
-      payload: { index: 1, attack }
-    });
+    const state = getState();
+    const roundState = getRoundState(state);
 
     dispatch({
       type: ROUND_STATE,
-      payload: { somethimng }
-    })
-  }
-}
+      payload: roundState
+    }); 
+  };
+};
 
 export const newRound = () => ({ type: NEW_ROUND });

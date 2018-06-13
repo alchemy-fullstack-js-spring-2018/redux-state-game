@@ -19,6 +19,8 @@ class Player extends PureComponent {
   render() {
     const { index, selection, makeChoice } = this.props;
 
+    console.log('INDEX', index);
+
     const gameLogic = (selection, index) => {
       if(index === 0) {
         return selection.hp - selection.attack;

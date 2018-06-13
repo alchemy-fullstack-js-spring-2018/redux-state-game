@@ -47,7 +47,7 @@ export function hpTracker(state = prevState, { type, payload }) {
     case COUNTER: {
       return {
         ...state,
-        [payload]: [payload][1].hp - [payload][0].attack
+        payload: payload.fn
       };
     }
     default:

@@ -28,7 +28,6 @@ class GameResults extends Component {
         { roundState === CHOOSING || 
           <div>
             {message[roundState]}
-            <button onClick={() => attackPlayer2(selection)}>Attack</button>
           </div>
         }
         { roundState === CHOOSING || PLAYING ||
