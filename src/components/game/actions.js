@@ -1,9 +1,11 @@
 import { NEW_GAME, NEW_ROUND, NEW_GUESS, SAVE_GAME, LOAD_GAME, getGameState, getGuessed, getWins, getWord, getWordBank } from './reducers';
-import { gameWords } from '../../constants';
+// import { gameWords } from '../../constants';
+
+const gameWords = ['igloo', 'elephant', 'skyrim', 'bethesda', 'magic', 'amore', 'tree'];
 
 const copyGameWords = () => gameWords.slice();
 
-const getRandomWord = (wordBank) => {
+export const getRandomWord = (wordBank) => {
   const index = Math.floor(Math.random() * wordBank.length);
   const gameWord = wordBank[index].toUpperCase(); //saving the word 
   wordBank.splice(index, 1); //remove it from the array
