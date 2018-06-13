@@ -1,5 +1,5 @@
-import { getRandomWord, newRound, newGuess  } from './actions';
-import { NEW_ROUND, NEW_GUESS } from './reducers';
+import { getRandomWord, newRound, newGuess  } from './actions'; //eslint-disable-line
+import { NEW_ROUND, NEW_GUESS } from './reducers'; //eslint-disable-line
 
 describe ('Action tests', () => {
   //setting up middleware
