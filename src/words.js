@@ -1,1 +1,0 @@
-export const gameWords = ['igloo', 'elephant', 'skyrim', 'bethesda', 'magic', 'hanging', 'amore'];
