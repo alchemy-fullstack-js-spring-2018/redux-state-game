@@ -3,5 +3,6 @@ module.exports = {
   setupTestFrameworkScriptFile: '<rootDir>/enzyme.setup.js',
   transform: {
     '.*': '<rootDir>/node_modules/jest-css-modules'
-  }
+  },
+  setupFiles: ['jest-localstorage-mock']
 };
