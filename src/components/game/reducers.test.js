@@ -1,28 +1,30 @@
 import {
   selections,
-  SELECTION, 
+  SELECTION,
+  COUNTER, 
   NEW_ROUND,
   ROUND_STATE,
   getSelections,
-  getRoundState
+  getRoundState,
+  hpTracker
 } from './reducers';
 
 const poke1 = {
   name: 'pocketmon', 
   hp: 5, 
-  attack: 500 
+  attack: 4
 };
 
 const poke2 = {
   name: 'pocketwomon', 
   hp: 50, 
-  attack: 50,
+  attack: 3,
 };
 
 const poke3 = {
   name: 'pocketthem', 
   hp: 0, 
-  attack: 50,
+  attack: 2,
 };
 
 describe('selections reducer', () => {
@@ -97,5 +99,13 @@ describe('selections reducer', () => {
       testRoundState([poke3, poke2], ROUND_STATE.LOSE);
     });
 
+  });
+});
+
+describe('hp tracking', () => {
+  
+  it('reduces hp and gets new state', () => {
+    const hp = hpTracker([poke1, poke2], { type: COUNTER });
+    expect(hp).toEqual();
   });
 });

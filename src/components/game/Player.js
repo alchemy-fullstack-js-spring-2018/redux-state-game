@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPlayerSelection } from './reducers';
-import { makeChoice, attackPlayer2 } from './actions';
+import { makeChoice } from './actions';
 import { choices } from './Choices';
 import styles from './Player.css';
 
@@ -14,8 +14,16 @@ class Player extends PureComponent {
     makeChoice: PropTypes.func.isRequired
   };
 
+
+
   render() {
     const { index, selection, makeChoice } = this.props;
+
+    const gameLogic = (selection, index) => {
+      if(index === 0) {
+        return selection.hp - selection.attack;
+      }
+    };
 
     return (
       <div className={styles.player}>
@@ -34,6 +42,9 @@ class Player extends PureComponent {
             );
           })
         }
+        <div>
+          <button onClick={() => gameLogic(selection)}>Attack2</button>
+        </div>
       </div>
     );
   }

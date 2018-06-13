@@ -56,4 +56,28 @@ export const makeChoice = choice => {
   };
 };
 
+export const makeAttack = attack => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COUNTER,
+      payload: { index: 0, attack }
+    });
+
+    dispatch({ 
+      type: ROUND_STATE,
+      payload: { Something}
+    });
+
+    dispatch({
+      type: COUNTER,
+      payload: { index: 1, attack }
+    });
+
+    dispatch({
+      type: ROUND_STATE,
+      payload: { somethimng }
+    })
+  }
+}
+
 export const newRound = () => ({ type: NEW_ROUND });

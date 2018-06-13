@@ -42,7 +42,7 @@ export function selections(state = initSelections(), { type, payload }) {
   }
 }
 const prevState = [];
-export function match(state = prevState, { type, payload }) {
+export function hpTracker(state = prevState, { type, payload }) {
   switch (type) {
     case COUNTER: {
       return {
