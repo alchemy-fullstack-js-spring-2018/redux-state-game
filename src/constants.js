@@ -5,8 +5,15 @@ import rightArm from '../assets/rightArm.png';
 import rightLeg from '../assets/rightLeg.png';
 import torso from '../assets/torso.png';
 
-export const limbImages = [head, torso, leftArm, rightArm, leftLeg, rightLeg];
+const gameWords = ['igloo', 'elephant', 'skyrim', 'bethesda', 'magic', 'amore', 'tree'];
 
-export const gameWords = ['igloo', 'elephant', 'skyrim', 'bethesda', 'magic', 'amore', 'tree'];
+const limbImages = [head, torso, leftArm, rightArm, leftLeg, rightLeg];
 
-export const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+export {
+  limbImages,
+  gameWords,
+  alphabet
+};
