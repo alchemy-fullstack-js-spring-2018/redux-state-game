@@ -1,5 +1,5 @@
 import { words } from '../../words';
-import { GUESS, NEW_GAME } from './reducers';
+import { GUESS, NEW_GAME, PLAYER_ADD, RESULTS_LOAD, WIN_ADD, PLAYER_SET } from './reducers';
 
 const getRandomWord = () => {
   const index = Math.floor(Math.random() * words.length);
@@ -13,9 +13,13 @@ export const addGuess = guess => {
   };
 };
 
-export const initiateGame = () => {
+export const initiateGame = name => {
   return {
     type: NEW_GAME,
-    payload: getRandomWord()
+    payload: {
+      name,
+      word: getRandomWord()
+    }
   };
 };
+

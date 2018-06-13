@@ -1,5 +1,5 @@
-import { GUESS, NEW_GAME } from './reducers';
-import { addGuess, initiateGame } from './actions';
+import { GUESS, NEW_GAME, PLAYER_ADD, RESULTS_LOAD, WIN_ADD, PLAYER_SET } from './reducers';
+import { addGuess, initiateGame, setPlayer } from './actions';
 
 describe('actions', () => {
   it('adds a guess', () => {
@@ -7,6 +7,8 @@ describe('actions', () => {
   });
 
   it('starts a new game', () => {
-    expect(initiateGame()).toEqual({ type: NEW_GAME, payload: expect.stringMatching(/\w+/) });
+    expect(initiateGame('Ryan')).toEqual({ type: NEW_GAME, payload: { word: expect.stringMatching(/\w+/), name: 'Ryan' } });
   });
+
+
 });
