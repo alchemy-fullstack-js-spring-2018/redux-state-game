@@ -1,11 +1,41 @@
 
 :local(.hangman) {
     width: 100vw;
-    height: 20vh;
-    background-image: url('../../../assets/background.png');
-    background-size: cover;
+
+    #scaffold{
+        position: relative;
+        display: block;
+        height: 550px;
+        border: 1px solid black;
+    }
+
+    #gallows-container{
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+        top: 0;
+    }
+
+    .limbs{
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+    }
+
+    .gallows {
+        display:block;
+        margin:auto;
+    }
 
     .head {
-        
+        position: absolute;
+        left: 40%;
+        top: 20%;
     }
+
+    .head img {
+        height: 90px;
+    }
+
 }
