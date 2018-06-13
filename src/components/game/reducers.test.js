@@ -84,4 +84,15 @@ describe('Testing user guessed', () => {
     const expected =  ['s', 'a', 's', 's', 'y', 'a']; 
     expect(state).toEqual(expected);
   });
+
+  it('tests wehther new game returns an empty array of letters', () => {
+
+    const state = guessed(secondGameState.guessed, {
+      type: NEW_GAME,
+      payload: ''
+    });
+
+    const expected = [];
+    expect(state).toEqual(expected);
+  });
 });
