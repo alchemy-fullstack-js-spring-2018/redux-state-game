@@ -1,26 +1,30 @@
 import { tally, word, wordBank, initMatch, getGameState, guessed, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
 
 const firstGameState = {
-  limbCount: 2,
   word: 'solatious',
-  guessed: 'solatious',
+  guessed: ['s', 'o', 'l', 'a', 't', 'i', 'o', 'u', 's'],
 };
 
 const secondGameState = {
-  limbCount: 6,
   word: 'sassy',
-  guessed: 'sassy',
+  guessed: ['s', 'a', 's', 's', 'y'],
 };
 
 const thirdGameState = {
-  limbCount: 5,
   word: 'brassy',
-  guessed: 'brass',
+  guessed: ['e', 'l', 'e', 'p', 'h', 'a', 'n', 't'],
 };
+
+const fourthGameState = {
+  word: 'lassy',
+  guessed: ['l', 'a'],
+};
+
+
 describe(' testing reducer function getGameState', () => {
 
   it('has a default value of an object with properties', () => {
-    const state = getGameState(secondGameState, {});
+    const state = getGameState(thirdGameState, {});
     expect(state).toEqual(GAME_STATE.LOSE);
   });
 
@@ -29,13 +33,13 @@ describe(' testing reducer function getGameState', () => {
     expect(state).toEqual(GAME_STATE.WIN);
   });
 
-  it('make sure return lost game state when limbs are six', () => {
-    const state = getGameState(secondGameState, {});
+  it('make sure return lost game state when missed letters are six', () => {
+    const state = getGameState(thirdGameState, {});
     expect(state).toEqual(GAME_STATE.LOSE);
   });
 
   it('returns currently playing gameState when word is not guessed and limbs are below 6', () => {
-    const state = getGameState(thirdGameState, {});
+    const state = getGameState(fourthGameState, {});
     expect(state).toEqual(GAME_STATE.PLAYING);
   });
 
