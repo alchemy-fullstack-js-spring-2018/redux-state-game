@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Letter.css';
 
 export default class Letter extends Component {
 
@@ -12,7 +11,7 @@ export default class Letter extends Component {
     render() {
       const { letter, hit } = this.props;
       return (
-        <div className={styles.letter}>
+        <div className="letter">
           <span className={hit ? null : 'hidden'}>{letter}</span>
         </div>
       );

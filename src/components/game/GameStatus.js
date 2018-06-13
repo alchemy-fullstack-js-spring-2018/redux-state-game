@@ -1,36 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { newGame, newRound } from './actions';
 import { getGameState } from './reducers';
 import { alphabet } from '../../constants';
+import Player from './Player';
 import Key from './Key';
+import styles from './GameStatus.css';
 
 class GameStatus extends Component {
 
-
   static propTypes = {
-    newGame: PropTypes.func.isRequired,
     gameState: PropTypes.string.isRequired,
-    newRound: PropTypes.func.isRequired
   };
 
   render() {
-    const { newGame, gameState, newRound } = this.props;
-    let gameButton = gameState === 'BLANK' ? 'New Game' : 'Restart';
+    const {gameState } = this.props;
 
     return (
-      <section>
+      <section className={styles.gameStatus}>
         {gameState === 'PLAYING' && alphabet.map(elem =>
           <Key 
             key={elem}
             letter={elem} />
         )}
-        {gameState === 'PLAYING' || gameState === 'WIN' && <button onClick={newRound}>New Round</button>}
-        <button onClick={newGame}>{gameButton}</button>
-        <br/>
-        {gameState === 'WIN' ? <span>You won!</span> : null}
-        {gameState === 'LOSE' ? <span>You lost!</span> : null}
+        <div id="player">
+          {gameState === 'WIN' ? <span>You won!</span> : null}
+          {gameState === 'LOSE' ? <span>You lost!</span> : null}
+          <Player />
+          <br/>
+        </div>
       </section>
     );
   }
@@ -40,5 +38,5 @@ export default connect(
   state => ({
     gameState: getGameState(state),
   }),
-  { newGame, newRound }
+  null
 )(GameStatus);

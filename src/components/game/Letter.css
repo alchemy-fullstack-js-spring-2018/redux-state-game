@@ -1,7 +1,0 @@
-:local(.letter) {
-    margin: 5px;
-
-    .hidden{
-        visibility: hidden;
-    }
-}

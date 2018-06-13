@@ -34,16 +34,16 @@ class Hangman extends Component {
           <section id="scaffold">
             <div id="gallows-container">
               <img className='gallows' src={gallows}/>
-            </div>
-            <div id="limbs">
-              {shownLimbs.map((limb, index) => <Limb
-                key= {index}
-                data= {limb}
-              />)}
-            </div>
+              <div id="limbs">
+                {shownLimbs.map((limb, index) => <Limb
+                  key= {index}
+                  data= {limb}
+                />)}
+              </div>
+            </div>               
           </section>
           <div id="status">
-            {gameState === 'PLAYING' ? `${limbsRemaining} out of 6` : null}
+            {gameState === 'PLAYING' ? `${limbsRemaining} out of 6 Limbs Remaining!` : null}
           </div>
         </section>
       );
