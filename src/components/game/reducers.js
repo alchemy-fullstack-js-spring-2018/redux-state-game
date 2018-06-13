@@ -3,6 +3,7 @@ export const NEW_GAME = 'NEW_GAME';
 export const PLAYER_ADD = 'PLAYER_ADD';
 export const RESULTS_LOAD = 'RESULTS_LOAD';
 export const WIN_ADD = 'WIN_ADD';
+export const PLAYER_SET = 'PLAYER_SET';
 
 export const GAME_STATE = {
   EMPTY: 'EMPTY',
@@ -87,6 +88,8 @@ export function results(state = [], { type, payload }) {
 
 export function player(state = '', { type, payload }) {
   switch(type) {
+    case PLAYER_SET:
+      return payload;
     default:
       return state;
   }

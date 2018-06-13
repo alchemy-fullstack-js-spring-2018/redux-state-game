@@ -15,7 +15,8 @@ import {
   PLAYER_ADD,
   RESULTS_LOAD,
   WIN_ADD,
-  player } from './reducers';
+  player,
+  PLAYER_SET } from './reducers';
 
 describe('guesses reducer', () => {
   it('has an initial state of an empty array', () => {
@@ -139,5 +140,10 @@ describe('Player Reducer', () => {
   it('has a default value of an empty string', () => {
     const state = player(undefined, {});
     expect(state).toEqual('');
+  });
+
+  it('sets the current player', () => {
+    const state = player('', { type: PLAYER_SET, payload: 'Lewis' });
+    expect(state).toEqual('Lewis');
   });
 });
