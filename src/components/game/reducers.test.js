@@ -13,8 +13,8 @@ import {
   getGameState,
   results,
   PLAYER_ADD,
-  RESULTS_LOAD
-} from './reducers';
+  RESULTS_LOAD,
+  WIN_ADD } from './reducers';
 
 describe('guesses reducer', () => {
   it('has an initial state of an empty array', () => {
@@ -126,5 +126,10 @@ describe('Results Reducer', () => {
   it('Adds Game Played when game starts', () => {
     const state = results([{ name: 'Ryan', games: 1, wins: 1 }], { type: NEW_GAME, payload: 'Ryan' });
     expect(state).toEqual([{ name: 'Ryan', games: 2, wins: 1 }]);
+  });
+
+  it('Adds a Win', () => {
+    const state = results([{ name: 'Ryan', games: 2, wins: 1 }, { name: 'Keli', games: 0, wins: 0 }], { type: WIN_ADD, payload: 'Ryan' });
+    expect(state).toEqual([{ name: 'Ryan', games: 2, wins: 2 }, { name: 'Keli', games: 0, wins: 0 }]);
   });
 });
