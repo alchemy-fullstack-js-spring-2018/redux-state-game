@@ -1,5 +1,5 @@
 import { GUESS, NEW_GAME, PLAYER_ADD, RESULTS_LOAD, WIN_ADD, PLAYER_SET } from './reducers';
-import { addGuess, initiateGame, setPlayer } from './actions';
+import { addGuess, initiateGame, setPlayer, recordWin } from './actions';
 
 describe('actions', () => {
   it('adds a guess', () => {
@@ -31,3 +31,6 @@ describe('actions', () => {
   });
 });
 
+it('adds a win to the current player\'s results', () => {
+  expect(recordWin('Keli')).toEqual({ type: WIN_ADD, payload: 'Keli' });
+});

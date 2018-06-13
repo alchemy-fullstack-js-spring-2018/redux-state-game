@@ -40,3 +40,10 @@ export const setPlayer = name => {
     }
   };
 };
+
+export const recordWin = name => {
+  return {
+    type: WIN_ADD,
+    payload: name
+  };
+};
