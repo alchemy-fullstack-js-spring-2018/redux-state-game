@@ -23,3 +23,20 @@ export const initiateGame = name => {
   };
 };
 
+export const setPlayer = name => {
+  return (dispatch, getState) => {
+
+    dispatch({ 
+      type: PLAYER_SET,
+      payload: name
+    });
+
+    const { results } = getState();
+    if(!results.some(obj => obj.name === name)) {
+      dispatch({
+        type: PLAYER_ADD,
+        payload: name
+      });
+    }
+  };
+};
