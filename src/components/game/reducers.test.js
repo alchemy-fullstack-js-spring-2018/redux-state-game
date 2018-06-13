@@ -1,4 +1,4 @@
-import { tally, initMatch, getGameState, guessed, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
+import { tally, word, wordBank, initMatch, getGameState, guessed, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
 
 const firstGameState = {
   limbCount: 2,
@@ -85,7 +85,7 @@ describe('Testing user guessed', () => {
     expect(state).toEqual(expected);
   });
 
-  it('tests wehther new game returns an empty array of letters', () => {
+  it('tests whether new game returns an empty array of letters', () => {
 
     const state = guessed(secondGameState.guessed, {
       type: NEW_GAME,
@@ -94,5 +94,46 @@ describe('Testing user guessed', () => {
 
     const expected = [];
     expect(state).toEqual(expected);
+  });
+});
+
+describe('testing word reducer function', () => {
+
+  it('returns a string with word in state', () => {
+    
+    const state = word(thirdGameState.word, {
+      type: NEW_GAME,
+      payload: { word: 'brassy' }
+    });
+
+    const expected = 'brassy';
+    expect(state).toEqual(expected);
+  });
+
+  it('return a string of previous words', () => {
+    
+    const state = word(secondGameState.word, {
+      type: NEW_ROUND,
+      payload: { word: 'sassy' }
+    });
+
+    const expected = 'sassy';
+    expect(state).toEqual(expected);
+  });
+
+});
+
+
+describe('Testing wordBank reducer function', () => {
+
+  it('wordBank returns an array of strings', () => {
+    const array = ['words', 'this'];
+
+    const state = wordBank(secondGameState, {
+      type: NEW_GAME,
+      payload: { wordBank: array }
+    });
+
+    expect(state).toEqual(array);
   });
 });
