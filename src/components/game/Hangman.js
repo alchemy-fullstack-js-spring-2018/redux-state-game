@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { limbImages } from '../../../assets/images';
+import { limbImages } from '../../constants';
 import { findMisses, getGameState } from './reducers';
 import styles from './Hangman.css';
 import Limb from './Limb';
@@ -19,7 +19,7 @@ class Hangman extends Component {
 
     static propTypes = {
       misses: PropTypes.array.isRequired,
-      gameState: PropTypes.any.isRequired
+      gameState: PropTypes.string.isRequired
     };
 
     render() {
@@ -47,7 +47,7 @@ class Hangman extends Component {
 export default connect(
   state => ({
     misses: findMisses(state),
-    gameState: findMisses(state)
+    gameState: getGameState(state)
   }),
   null
 )(Hangman);
