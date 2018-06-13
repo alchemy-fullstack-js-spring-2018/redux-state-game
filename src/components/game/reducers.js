@@ -1,5 +1,7 @@
 export const GUESS = 'GUESS';
 export const NEW_GAME = 'NEW_GAME';
+export const PLAYER_ADD = 'PLAYER_ADD';
+export const RESULTS_LOAD = 'RESULTS_LOAD';
 
 export const GAME_STATE = {
   EMPTY: 'EMPTY',
@@ -56,6 +58,25 @@ export function word(state = '', { type, payload }) {
   switch(type) {
     case NEW_GAME:
       return payload;
+    default:
+      return state;
+  }
+}
+
+export function results(state = [], { type, payload }) {
+  switch(type) {
+    case PLAYER_ADD:
+      return [
+        ... state,
+        {
+          name: payload,
+          games: 0,
+          wins: 0
+        }];
+    case RESULTS_LOAD:
+      return payload;
+    case NEW_GAME:
+      return state.map(player => player.name === payload ? { ...player, games: player.games + 1 } : player);
     default:
       return state;
   }

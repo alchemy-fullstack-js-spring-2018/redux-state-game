@@ -10,7 +10,11 @@ import {
   findHits,
   findMisses,
   countMisses,
-  getGameState } from './reducers';
+  getGameState,
+  results,
+  PLAYER_ADD,
+  RESULTS_LOAD
+} from './reducers';
 
 describe('guesses reducer', () => {
   it('has an initial state of an empty array', () => {
@@ -99,5 +103,28 @@ describe('selectors', () => {
   
   it('gets a game state of PLAYING', () => {
     expect(getGameState({ word: 'dog', guesses: ['d', 'o'] })).toBe(GAME_STATE.PLAYING);
+  });
+});
+
+describe('Results Reducer', () => {
+
+  it('Default Value of empty object', () => {
+    const state = results(undefined, []);
+    expect(state).toEqual([]);
+  });
+
+  it('Adds a player entry', () => {
+    const state = results([], { type: PLAYER_ADD, payload: 'Ryan' });
+    expect(state).toEqual([{ name: 'Ryan', games: 0, wins: 0 }]);
+  });
+
+  it('Loads Results from Local Storage', () => {
+    const state = results([], { type: RESULTS_LOAD, payload: [{ name: 'Ryan', games: 1, wins: 1 }] });
+    expect(state).toEqual([{ name: 'Ryan', games: 1, wins: 1 }]);
+  });
+
+  it('Adds Game Played when game starts', () => {
+    const state = results([{ name: 'Ryan', games: 1, wins: 1 }], { type: NEW_GAME, payload: 'Ryan' });
+    expect(state).toEqual([{ name: 'Ryan', games: 2, wins: 1 }]);
   });
 });
