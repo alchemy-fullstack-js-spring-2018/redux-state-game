@@ -67,7 +67,7 @@ export const newGuess = letter => {
 export const saveGame = id => {
   return (dispatch, getState) => {
     const state = getState();
-    const save = {
+    const newSave = {
       id: id,
       wins: getWins(state),
       wordBank: getWordBank(state),
@@ -75,8 +75,17 @@ export const saveGame = id => {
       guessed: getGuessed(state),
       timestamp: new Date(),
     };
-    
-    localStorage.setItem(id, JSON.stringify(save));
+
+    let saves = [];
+    if(localStorage.getItem('saves') === null) {
+      saves.push(newSave);
+      localStorage.setItem('saves', JSON.stringify(saves));
+    } else {
+      saves = JSON.parse(localStorage.getItem('saves'));
+      saves.push(newSave);
+      localStorage.setItem('saves', JSON.stringify(saves));
+    }
+
     dispatch({
       type: SAVE_GAME,
       payload: id
@@ -86,7 +95,8 @@ export const saveGame = id => {
 
 export const loadGame = id => {
   return (dispatch) => {
-    const save = JSON.parse(localStorage.getItem(id));
+    const saves = JSON.parse(localStorage.getItem('saves'));
+    const save = saves.find(save => save.id === id);
 
     dispatch({
       type: LOAD_GAME,

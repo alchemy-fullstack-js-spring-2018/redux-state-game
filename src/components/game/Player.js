@@ -32,10 +32,8 @@ class Player extends Component {
 
       let newSaves = [];
       this.setState({ saves: newSaves }, () => {
-        for(let i = 0, len = localStorage.length; i < len; ++i) {
-          newSaves.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        }
-        this.setState({ saves: newSaves });
+        const loadedSaves = JSON.parse(localStorage.getItem('saves'));
+        this.setState({ saves: loadedSaves });
       });
     };
 
@@ -85,17 +83,22 @@ class Player extends Component {
 
           <div id="modal">
             <div className="modal-content" id="save">
+
               Name your save:
               <input type="text" name="save-id" value={id} onChange={this.handleChange}/>
+
               <button onClick={this.closeModal}>Cancel</button>
               <button onClick={this.handleSave}>Save</button>
+
             </div>
             <div className="modal-content" id="load">
+
               {saves.length ? saves.map((save, index) =>
                 <div key={index}><span>Save: {save.id} at {save.timestamp.toString()}</span>
                   <button type="button" onClick={() => handleLoad(save.id)}>Pick me!</button></div>) : 'No saves, yet'}
-              <input type="text" name="save-id" value={id} onChange={this.handleChange}/>
+
               <button onClick={this.closeModal}>Cancel</button>
+
             </div>
           </div>
 

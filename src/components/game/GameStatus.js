@@ -14,7 +14,7 @@ class GameStatus extends Component {
   };
 
   render() {
-    const {gameState } = this.props;
+    const { gameState } = this.props;
 
     return (
       <section className={styles.gameStatus}>
