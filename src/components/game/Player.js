@@ -73,8 +73,7 @@ class Player extends Component {
           {saves.length ? saves.map((save, index) =>
             <div key={index}><span>{save.id} at {save.timestamp}</span>
               <button type="button" onClick={() => handleLoad(save.id)}>Load me!</button></div>) : 'No saves, yet!'}
-          <br/>  
-          <button onClick={this.closeModal}>Cancel</button>
+          <span className="full"><button onClick={this.closeModal}>Cancel</button></span>
 
         </div>);
 

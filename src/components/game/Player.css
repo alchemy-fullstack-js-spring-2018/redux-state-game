@@ -79,9 +79,14 @@
         border: none;
         border-bottom: 1px solid white;
         padding-left: .2em;
+        color: white;
     }
 
     input[type="text"]:focus{
         border: none;
+    }
+    
+    .full{
+        width: 100%;
     }
 }
