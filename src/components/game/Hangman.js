@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { limbImages } from '../../constants';
+import gallows from '../../../assets/gallows.png';
 import { findMisses, getGameState } from './reducers';
 import styles from './Hangman.css';
 import Limb from './Limb';
@@ -30,12 +31,17 @@ class Hangman extends Component {
 
       return (
         <section className={styles.hangman}>
-          <div id="limbs">
-            {shownLimbs.map((limb, index) => <Limb
-              key= {index}
-              data= {limb}
-            />)}
-          </div>
+          <section id="scaffold">
+            <div id="gallows-container">
+              <img className='gallows' src={gallows}/>
+            </div>
+            <div id="limbs">
+              {shownLimbs.map((limb, index) => <Limb
+                key= {index}
+                data= {limb}
+              />)}
+            </div>
+          </section>
           <div id="status">
             {gameState === 'PLAYING' ? `${limbsRemaining} out of 6` : null}
           </div>
