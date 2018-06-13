@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createWordArray, findHits } from './reducers';
+import { createWordArray, findHits, getGameState } from './reducers';
 import Letter from './Letter';
 import styles from './Letters.css';
 
@@ -9,13 +9,14 @@ class Letters extends Component {
 
     static propTypes = {
       word: PropTypes.array.isRequired,
-      hits: PropTypes.array.isRequired
+      hits: PropTypes.array.isRequired,
+      gameState: PropTypes.string.isRequired,
     };
 
     render() {
-      const { word, hits } = this.props;
+      const { word, hits, gameState } = this.props;
 
-      return (
+      return gameState !== 'PLAYING' ? null : (
         <section className={styles.letters}> 
           <div id="letters-container">
             {word.map((letter, index) => <Letter
@@ -32,7 +33,8 @@ class Letters extends Component {
 export default connect(
   state => ({
     word: createWordArray(state),
-    hits: findHits(state)
+    hits: findHits(state),
+    gameState: getGameState(state),
   }),
   null
 )(Letters);

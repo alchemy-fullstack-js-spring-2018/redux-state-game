@@ -18,17 +18,18 @@ class GameStatus extends Component {
 
     return (
       <section className={styles.gameStatus}>
-        {gameState === 'PLAYING' && alphabet.map(elem =>
-          <Key 
-            key={elem}
-            letter={elem} />
-        )}
+        <div id="keyboard">
+          {gameState === 'PLAYING' && alphabet.map(elem =>
+            <Key 
+              key={elem}
+              letter={elem} />
+          )}
+        </div>
         <div id="player">
           {gameState === 'WIN' ? <span>You won!</span> : null}
           {gameState === 'LOSE' ? <span>You lost!</span> : null}
-          <Player />
-          <br/>
         </div>
+        <Player />
       </section>
     );
   }

@@ -1,9 +1,17 @@
 import { NEW_GAME, NEW_ROUND, NEW_GUESS, SAVE_GAME, LOAD_GAME, getGameState, getGuessed, getWins, getWord, getWordBank } from './reducers';
-// import { gameWords } from '../../constants';
+import { gameWords } from '../../constants';
 
-const gameWords = ['igloo', 'elephant', 'skyrim', 'bethesda', 'magic', 'amore', 'tree'];
-
-const copyGameWords = () => gameWords.slice();
+const getRandomBank = () => {
+  const gameWordsCopy = gameWords.slice();
+  const shuffleArray = (array) => {
+    for(let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+    }
+  };
+  shuffleArray(gameWordsCopy);
+  return gameWordsCopy.slice(0, 9);
+};
 
 export const getRandomWord = (wordBank) => {
   const index = Math.floor(Math.random() * wordBank.length);
@@ -13,7 +21,7 @@ export const getRandomWord = (wordBank) => {
 };
 
 export const newGame = () => {
-  const gameWords = copyGameWords();
+  const gameWords = getRandomBank();
   const gameWord = getRandomWord(gameWords);
     
   return (dispatch) => {
@@ -28,7 +36,7 @@ export const newGame = () => {
 };
 
 export const newRound = () => {
-  const gameWords = copyGameWords();
+  const gameWords = getRandomBank();
   const gameWord = getRandomWord(gameWords);
       
   return (dispatch, getState) => {

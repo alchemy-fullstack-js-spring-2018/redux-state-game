@@ -1,7 +1,21 @@
 
 :local(.game) {
+    position: relative;
+    height: 100vh;
+    
+    #title-container {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+    }
+
+    #footer-container{
+        position: absolute;
+        bottom: 1em;
+    }
 
     h1 {
-        margin-top: 2em;
+        font-family: 'Shadows Into Light', cursive;
+        font-size: 3em;
     }
 }

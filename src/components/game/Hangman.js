@@ -20,17 +20,27 @@ class Hangman extends Component {
 
     static propTypes = {
       misses: PropTypes.array.isRequired,
-      gameState: PropTypes.string.isRequired
+      gameState: PropTypes.string.isRequired,
+    };
+
+    handleDeathTwitch = () => {
+      const head = document.querySelector('.head img');
+      head ? head.style.transform = 'rotate(0deg)' : null;
+    };
+
+    handleHeadReset = () => {
+      const head = document.querySelector('.head img');
+      head ? head.style.transform = 'rotate(14deg)' : null;
     };
 
     render() {
       const { misses, gameState } = this.props;
       const missed = misses.length;
       const shownLimbs = limbs.slice(0, missed);
-      const limbsRemaining = 6 - missed;
 
       return (
         <section className={styles.hangman}>
+          {gameState !== 'LOSE' ? this.handleHeadReset() : this.handleDeathTwitch() }
           <section id="scaffold">
             <div id="gallows-container">
               <img className='gallows' src={gallows}/>
@@ -42,9 +52,6 @@ class Hangman extends Component {
               </div>
             </div>               
           </section>
-          <div id="status">
-            {gameState === 'PLAYING' ? `${limbsRemaining} out of 6 Limbs Remaining!` : null}
-          </div>
         </section>
       );
     }
@@ -53,7 +60,7 @@ class Hangman extends Component {
 export default connect(
   state => ({
     misses: findMisses(state),
-    gameState: getGameState(state)
+    gameState: getGameState(state),
   }),
   null
 )(Hangman);

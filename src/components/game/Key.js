@@ -19,6 +19,7 @@ class Key extends Component {
         <button type="button" 
           key={letter}
           onClick={() => newGuess(letter)}
+          className="key"
           disabled={this.props.guessed.includes(letter)}>
           {letter}
         </button>

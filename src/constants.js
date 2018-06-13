@@ -5,7 +5,7 @@ import rightArm from '../assets/rightArm.png';
 import rightLeg from '../assets/rightLeg.png';
 import torso from '../assets/torso.png';
 
-const gameWords = ['igloo', 'elephant', 'skyrim', 'bethesda', 'magic', 'amore', 'tree'];
+const gameWords = ['dagger', 'dragon', 'skyrim', 'nord', 'magic', 'khajiit', 'scroll', 'imperial', 'pony', 'ebonheart', 'armor', 'mudcrab', 'blades', 'emperor', 'vampire', 'gallows', 'manor', 'thieves', 'fighter', 'brotherhood', 'knee', 'greybeard', 'bard'];
 
 const limbImages = [head, torso, leftArm, rightArm, leftLeg, rightLeg];
 

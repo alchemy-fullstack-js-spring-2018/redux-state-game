@@ -10,10 +10,14 @@ export default class Game extends Component {
 
     return (
       <section className={styles.game}>
-        <h1>Skyrim Hangman</h1>
+        <div id="title-container">
+          <h1>Skyrim Hangman</h1>
+        </div>
         <Hangman />
-        <Letters />
-        <GameStatus />
+        <div id="footer-container">
+          <Letters />
+          <GameStatus />
+        </div>
       </section>
     );
   }
