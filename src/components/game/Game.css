@@ -1,0 +1,27 @@
+:local(.game) {
+
+  .win {
+    color: green;
+  }
+
+  .lose {
+    color: red;
+  }
+
+  button {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-family: serif;
+  }
+
+  input {
+    width: 3em;
+    height: 2em;
+    font-size: 1em;
+    text-align: center;
+    font-family: serif;
+    margin-bottom: .5em;
+  }
+
+}
