@@ -84,3 +84,10 @@ export function results(state = [], { type, payload }) {
       return state;
   }
 }
+
+export function player(state = '', { type, payload }) {
+  switch(type) {
+    default:
+      return state;
+  }
+}

@@ -14,7 +14,8 @@ import {
   results,
   PLAYER_ADD,
   RESULTS_LOAD,
-  WIN_ADD } from './reducers';
+  WIN_ADD,
+  player } from './reducers';
 
 describe('guesses reducer', () => {
   it('has an initial state of an empty array', () => {
@@ -108,8 +109,8 @@ describe('selectors', () => {
 
 describe('Results Reducer', () => {
 
-  it('Default Value of empty object', () => {
-    const state = results(undefined, []);
+  it('Default Value of empty array', () => {
+    const state = results(undefined, {});
     expect(state).toEqual([]);
   });
 
@@ -131,5 +132,12 @@ describe('Results Reducer', () => {
   it('Adds a Win', () => {
     const state = results([{ name: 'Ryan', games: 2, wins: 1 }, { name: 'Keli', games: 0, wins: 0 }], { type: WIN_ADD, payload: 'Ryan' });
     expect(state).toEqual([{ name: 'Ryan', games: 2, wins: 2 }, { name: 'Keli', games: 0, wins: 0 }]);
+  });
+});
+
+describe('Player Reducer', () => {
+  it('has a default value of an empty string', () => {
+    const state = player(undefined, {});
+    expect(state).toEqual('');
   });
 });
