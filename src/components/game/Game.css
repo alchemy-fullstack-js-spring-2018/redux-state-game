@@ -12,6 +12,7 @@
     #footer-container{
         position: absolute;
         bottom: 1em;
+        z-index: 10;
     }
 
     h1 {
