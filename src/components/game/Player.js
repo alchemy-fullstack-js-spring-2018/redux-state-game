@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { newGame, newRound, saveGame, loadGame } from './actions';
-import { getGameState, getWordBank } from './reducers';
+import { getGameState } from './reducers';
 import PropTypes from 'prop-types';
 import styles from './Player.css';
 
@@ -12,9 +12,9 @@ class Player extends Component {
       saveGame: PropTypes.func.isRequired,
       loadGame: PropTypes.func.isRequired,
       gameState: PropTypes.string.isRequired,
-      wordBank: PropTypes.array.isRequired,
       wins: PropTypes.number.isRequired,
       losses: PropTypes.number.isRequired,
+      rounds: PropTypes.number.isRequired,
     };
 
     state= {
@@ -62,10 +62,9 @@ class Player extends Component {
     };
 
     render() {
-      const { newGame, newRound, gameState, wordBank, wins, losses } = this.props;
+      const { newGame, newRound, gameState, wins, losses, rounds } = this.props;
       const { handleLoad } = this;
       const { id, saves } = this.state;
-      const wordsPlayed = 10 - wordBank.length;
 
       const loadModal = (
         <div className="modal-content" id="load">
@@ -100,7 +99,7 @@ class Player extends Component {
       return gameState === 'BLANK' ? beforeGame : (
         <section className={styles.player}>
           <div id="game-status">
-            <strong>Round {wordsPlayed - 1} of 10! Wins: {wins} && Losses: {losses}</strong>
+            <strong>Round {rounds} of 10! Wins: {wins} && Losses: {losses}</strong>
           </div>
           
           <button onClick={newGame}>New Game</button>
@@ -121,9 +120,9 @@ class Player extends Component {
 export default connect(
   state => ({
     gameState: getGameState(state),
-    wordBank: getWordBank(state),
     wins: state.tally.WIN,
     losses: state.tally.LOSE,
+    rounds: (state.tally.WIN + state.tally.LOSE + 1),
   }),
   { newGame, newRound, saveGame, loadGame }
 )(Player);
