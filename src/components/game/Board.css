@@ -1,0 +1,8 @@
+:local(.board) {
+  margin: auto auto;
+  width: 50vw;
+  height: 50vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
