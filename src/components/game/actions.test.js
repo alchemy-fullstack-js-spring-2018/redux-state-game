@@ -11,7 +11,7 @@ describe ('Action tests', () => {
     
     expect(getRandomWord(wordBank)).toMatch(/(IGLOO|HORSE|ELEPHANT)/gm); 
   });
-
+ 
   // it('newGame test refreshes gamewords and grabs a new word', () => {
      
   
