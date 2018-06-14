@@ -11,7 +11,7 @@ describe ('Action tests', () => {
     
     expect(getRandomWord(wordBank)).toMatch(/(IGLOO|HORSE|ELEPHANT)/gm); 
   });
-
+ 
   // it('newGame test refreshes gamewords and grabs a new word', () => {
      
   
@@ -28,7 +28,7 @@ describe ('Action tests', () => {
   //   thunk(dispatch, getState);
 
   //   const { calls } = dispatch.mock;
-  //   expect(calls.length).toBe(3);
+  //   expect(calls.length).toBe(3); //times mock is called. 
     
   //   expect(newGuess('z')).toEqual({ type: NEW_GUESS, payload: 'z' });
 
