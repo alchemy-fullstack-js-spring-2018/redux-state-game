@@ -1,0 +1,33 @@
+:local(.letters) {
+    margin: 2em 0em;
+ 
+    #letters-container {
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
+    }
+
+    .letter{
+        display: inline-flex;
+        flex-direction: column;
+        width: fit-content;
+        color: white;
+        font-size: 1.5em;
+    }
+
+    .letter span{
+        text-align: center;
+    }
+
+    .letter::after {
+        content: '';
+        display: inline-block;
+        width: 1.5em;
+        border-bottom: 2px solid;
+        margin-top: 5px;
+      }
+
+    .hidden{
+        visibility: hidden;
+    }
+}

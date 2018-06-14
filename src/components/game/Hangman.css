@@ -1,0 +1,71 @@
+
+:local(.hangman) {
+    width: 100vw;
+
+    #status{
+        text-align: center;
+        color: white;
+    }
+
+    #scaffold{
+        display: block;
+        height: 550px;
+    }
+
+    #gallows-container{
+        position: relative;
+        width: 280px;
+        height: 100%;
+        margin: auto;
+    }
+
+    .limbs{
+        position: absolute;
+        z-index: 5;
+    }
+
+    .gallows {
+        position: absolute;
+        top: 0;
+        left: calc(50% - 138px);
+        z-index: -1;
+    }
+
+    .head {
+        position: absolute;
+        left: 14%;
+        top: 30%;
+        z-index: 10;
+    }
+
+    .torso {
+        position: absolute;
+        left: 8%;
+        top: 39%;
+    }
+
+    .head img {
+        height: 90px;
+    }
+
+    .torso img{
+        height: 190px;
+    }
+    
+    .lArm img{
+
+    }
+
+    .lArm img{
+
+    }
+    
+    .lLeg img{
+
+    }
+
+    .rLeg img{
+
+    }
+
+}

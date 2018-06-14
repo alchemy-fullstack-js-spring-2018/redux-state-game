@@ -8,10 +8,10 @@ export default class Game extends Component {
 
     render() {
       const { data } = this.props;
-      const { type, image, visibility } = data;
+      const { type, image } = data;
       return (
-        <section className={`limb ${type} ${visibility}`}>
-          {type}
+        <section className={type}>
+          <img src={image}/>
         </section>
       );
     }

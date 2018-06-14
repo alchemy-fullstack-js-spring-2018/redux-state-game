@@ -6,8 +6,6 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --hot --mode development",
-    "lint": "eslint .",
-    "pretest": "npm run lint",
     "jest": "jest",
     "test": "npm run jest",
     "test:watch": "npm run jest -- --watch"
@@ -48,7 +46,8 @@
   "dependencies": {
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react-dom": "^16.4.1",
+    "react-modal": "^3.4.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
