@@ -21,14 +21,14 @@ export const getRandomWord = (wordBank) => {
 };
 
 export const newGame = () => {
-  const gameWords = getRandomBank();
-  const gameWord = getRandomWord(gameWords);
+  const gameBank = getRandomBank();
+  const gameWord = getRandomWord(gameBank);
     
   return (dispatch) => {
     dispatch({
       type: NEW_GAME,
       payload: {
-        wordBank: gameWords,
+        wordBank: gameBank,
         word: gameWord,
       }
     });
@@ -36,8 +36,8 @@ export const newGame = () => {
 };
 
 export const newRound = () => {
-  const gameWords = getRandomBank();
-  const gameWord = getRandomWord(gameWords);
+  const gameBank = getRandomBank();
+  const gameWord = getRandomWord(gameBank);
       
   return (dispatch, getState) => {
 
@@ -48,7 +48,7 @@ export const newRound = () => {
       type: NEW_ROUND,
       payload: {
         gameState: roundState,
-        wordBank: gameWords,
+        wordBank: gameBank,
         word: gameWord,
       }
     });
