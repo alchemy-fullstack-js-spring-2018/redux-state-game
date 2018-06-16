@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { limbImages } from '../../constants';
 import gallows from '../../../assets/gallows.png';
 import { findMisses, getGameState } from './reducers';
 import styles from './Hangman.css';
 import Limb from './Limb';
+import head from '../../../assets/head.png';
+import leftArm from '../../../assets/leftArm.png';
+import leftLeg from '../../../assets/leftLeg.png';
+import rightArm from '../../../assets/rightArm.png';
+import rightLeg from '../../../assets/rightLeg.png';
+import torso from '../../../assets/torso.png';
+
+const limbImages = [head, torso, leftArm, rightArm, leftLeg, rightLeg];
+
 
 const limbs = [
   {  type: 'head', image: limbImages[0] },
