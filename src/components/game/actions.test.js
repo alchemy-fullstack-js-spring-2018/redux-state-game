@@ -1,17 +1,17 @@
 import { getRandomWord, newRound, newGuess  } from './actions'; //eslint-disable-line
 import { NEW_ROUND, NEW_GUESS } from './reducers'; //eslint-disable-line
 
-describe ('Action tests', () => {
+
+describe('Action tests', () => {
   //setting up middleware
   
 
   it('gets a random word from gameWords array', () => {
     const wordBank = ['IGLOO', 'ELEPHANT', 'HORSE'];
-    // let regex = /^"IGLOO"|"ELEPHANT'"|"HORSE"/;
     
     expect(getRandomWord(wordBank)).toMatch(/(IGLOO|HORSE|ELEPHANT)/gm); 
   });
-
+ 
   // it('newGame test refreshes gamewords and grabs a new word', () => {
      
   
