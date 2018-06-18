@@ -1,5 +1,3 @@
-
-
 import { 
   getRandomWord,
   newGame,

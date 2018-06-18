@@ -109,7 +109,7 @@ export function tally(state = initMatch(), { type, payload }) {
   }
 }
 
-const noStore = () => ({
+export const noStore = () => ({
   stored: false,
   name: ''
 });

@@ -1,14 +1,94 @@
-import { tally, word, wordBank, initMatch, getGameState, guessed, newMatch, handleGame, NEW_GAME, NEW_ROUND, NEW_GUESS, createWordArray, GAME_STATE } from './reducers';// eslint-disable-line
+import { NEW_GAME, NEW_ROUND, NEW_GUESS, SAVE_GAME, LOAD_GAME,
+  getGameState, noStore, initMatch,
+  guessed, word, wordBank, tally, player, GAME_STATE } from './reducers';
+
+describe('guessed reducer', () => {
+  it('has an initial state of an empty array', () => {
+    const state = guessed(undefined, {});
+    expect(state).toEqual([]);
+  });
+
+  it('records a guess', () => {
+    const state = guessed([], {
+      type: NEW_GUESS,
+      payload: 'B'
+    });
+
+    expect(state).toEqual(['B']);
+  });
+
+  it('resets to an empty array for a new game', () => {
+    const state = guessed(['A', 'B'], { type: NEW_GAME });
+    expect(state).toEqual([]);
+  });
+
+  it('resets to an empty array for a new round', () => {
+    const state = guessed(['A', 'B'], { type: NEW_ROUND });
+    expect(state).toEqual([]);
+  });
+
+  it('load previous guesses on load game', () => {
+    const state = guessed([], { type: LOAD_GAME, payload: { guessed: ['A', 'B'] } });
+    expect(state).toEqual(['A', 'B']);
+  });
+});
+
+describe('word reducer', () => {
+  it('has an initial state of an empty string', () => {
+    const state = word(undefined, {});
+    expect(state).toEqual('');
+  });
+
+  it('sets a new mystery word on new game', () => {
+    const state = word('', { type: NEW_GAME, payload: { word: 'game' } });
+    expect(state).toEqual('game');
+  });
+
+  it('sets a new mystery word on new round', () => {
+    const state = word('', { type: NEW_ROUND, payload: { word: 'round' } });
+    expect(state).toEqual('round');
+  });
+
+  it('loads previous word on load game', () => {
+    const state = word('', { type: LOAD_GAME, payload: { word: 'load' } });
+    expect(state).toEqual('load');
+  });
+});
+
+
+describe('wordbank reducer', () => {
+  const testWordBank = ['too', 'many', 'tests'];
+
+  it('has a default state of an empty array', () => {
+    const state = wordBank(undefined, {});
+    expect(state).toEqual([]);
+  });
+
+  it('loads a word bank on new game', () => {
+    const state = wordBank(['bad'], { type: NEW_GAME, payload: { wordBank: testWordBank } });
+    expect(state).toEqual(testWordBank);
+  });
+
+  it('loads a word bank on a new round', () => {
+    const state = wordBank(['old'], { type: NEW_ROUND, payload: { wordBank: testWordBank } });
+    expect(state).toEqual(testWordBank);
+  });
+
+  it('loads previous wordbank on load game', () => {
+    const state = wordBank([], { type: LOAD_GAME, payload: { wordBank: testWordBank } });
+    expect(state).toEqual(testWordBank);
+  });
+});
 
 const firstGameState = {
   word: 'solatious',
   guessed: ['s', 'o', 'l', 'a', 't', 'i', 'o', 'u', 's'],
 };
 
-const secondGameState = {
-  word: 'sassy',
-  guessed: ['s', 'a', 's', 's', 'y'],
-};
+// const secondGameState = {
+//   word: 'sassy',
+//   guessed: ['s', 'a', 's', 's', 'y'],
+// };
 
 const thirdGameState = {
   word: 'brassy',
@@ -20,7 +100,6 @@ const fourthGameState = {
   guessed: ['l', 'a'],
 };
 
-
 describe(' testing reducer function getGameState', () => {
 
   it('has a default value of an object with properties', () => {
@@ -28,7 +107,7 @@ describe(' testing reducer function getGameState', () => {
     expect(state).toEqual(GAME_STATE.LOSE);
   });
 
-  it('make sure returning a valid Game State', () => {
+  it('make sure its returning a valid Game State', () => {
     const state = getGameState(firstGameState, {});
     expect(state).toEqual(GAME_STATE.WIN);
   });
@@ -45,99 +124,54 @@ describe(' testing reducer function getGameState', () => {
 
 });
 
-// describe('testing whether the Game tally is tallying', () => {
+describe('tally reducer', () => {
   
-// it('checks to see if game lost, Tally lose goes up by one', () => {
-//   const state = tally(initMatch(), {
-//     type: NEW_ROUND,
-//     payload: GAME_STATE.LOSE
-//   });
-//   const expected = {
-//     [GAME_STATE.WIN]: 0,
-//     [GAME_STATE.LOSE]: 1,
-//   };
-
-//   expect(state).toEqual(expected);
-// });
-
-// it('checks to see if game won, Tally win goes up by one', () => {
-//   const state = tally(initMatch(), {
-//     type: NEW_ROUND,
-//     payload: GAME_STATE.WIN
-//   });
-//   const expected = {
-//     [GAME_STATE.WIN]: 1,
-//     [GAME_STATE.LOSE]: 0,
-//   };
-
-//   expect(state).toEqual(expected);
-// });
-
-
-// });
-
-describe('Testing user guessed', () => {
-
-  it('tests whether guessed letters are returned', () => {
-
-    const state = guessed(secondGameState.guessed, {
-      type: NEW_GUESS,
-      payload: 'a'
-    });
-
-    const expected =  ['s', 'a', 's', 's', 'y', 'a']; 
-    expect(state).toEqual(expected);
-  });
-
-  it('tests whether new game returns an empty array of letters', () => {
-
-    const state = guessed(secondGameState.guessed, {
-      type: NEW_GAME,
-      payload: ''
-    });
-
-    const expected = [];
-    expect(state).toEqual(expected);
-  });
-});
-
-describe('testing word reducer function', () => {
-
-  it('returns a string with word in state', () => {
-    
-    const state = word(thirdGameState.word, {
-      type: NEW_GAME,
-      payload: { word: 'brassy' }
-    });
-
-    const expected = 'brassy';
-    expect(state).toEqual(expected);
-  });
-
-  it('return a string of previous words', () => {
-    
-    const state = word(secondGameState.word, {
+  it('checks to see if game lost, Tally lose goes up by one', () => {
+    const state = tally(initMatch(), {
       type: NEW_ROUND,
-      payload: { word: 'sassy' }
+      payload: {
+        gameState: [GAME_STATE.LOSE],
+      }
     });
+    const expected = {
+      [GAME_STATE.WIN]: 0,
+      [GAME_STATE.LOSE]: 1,
+    };
 
-    const expected = 'sassy';
+    expect(state).toEqual(expected);
+  });
+
+  it('checks to see if game won, Tally win goes up by one', () => {
+    const state = tally(initMatch(), {
+      type: NEW_ROUND,
+      payload: {
+        gameState: [GAME_STATE.WIN]}
+    });
+    const expected = {
+      [GAME_STATE.WIN]: 1,
+      [GAME_STATE.LOSE]: 0,
+    };
+
     expect(state).toEqual(expected);
   });
 
 });
 
+describe('Player Reducer', () => {
+  const savedId = 345;
 
-describe('Testing wordBank reducer function', () => {
+  it('has a default value', () => {
+    const state = player(undefined, {});
+    expect(state).toEqual(noStore());
+  });
 
-  it('wordBank returns an array of strings', () => {
-    const array = ['words', 'this'];
+  it('save game sets player id', () => {
+    const state = player('', { type: SAVE_GAME, payload: { id: savedId } });
+    expect(state).toEqual({ stored: true, id: savedId });
+  });
 
-    const state = wordBank(secondGameState, {
-      type: NEW_GAME,
-      payload: { wordBank: array }
-    });
-
-    expect(state).toEqual(array);
+  it('loads game returns stored bool and id', () => {
+    const state = player('', { type: LOAD_GAME, payload: { id: savedId } });
+    expect(state).toEqual({ stored: true, id: savedId });
   });
 });
