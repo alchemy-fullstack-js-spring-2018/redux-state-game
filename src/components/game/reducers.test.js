@@ -45,36 +45,36 @@ describe(' testing reducer function getGameState', () => {
 
 });
 
-describe('testing whether the Game tally is tallying', () => {
+// describe('testing whether the Game tally is tallying', () => {
   
-  it('checks to see if game lost, Tally lose goes up by one', () => {
-    const state = tally(initMatch(), {
-      type: NEW_ROUND,
-      payload: GAME_STATE.LOSE
-    });
-    const expected = {
-      [GAME_STATE.WIN]: 0,
-      [GAME_STATE.LOSE]: 1,
-    };
+// it('checks to see if game lost, Tally lose goes up by one', () => {
+//   const state = tally(initMatch(), {
+//     type: NEW_ROUND,
+//     payload: GAME_STATE.LOSE
+//   });
+//   const expected = {
+//     [GAME_STATE.WIN]: 0,
+//     [GAME_STATE.LOSE]: 1,
+//   };
 
-    expect(state).toEqual(expected);
-  });
+//   expect(state).toEqual(expected);
+// });
 
-  it('checks to see if game won, Tally win goes up by one', () => {
-    const state = tally(initMatch(), {
-      type: NEW_ROUND,
-      payload: GAME_STATE.WIN
-    });
-    const expected = {
-      [GAME_STATE.WIN]: 1,
-      [GAME_STATE.LOSE]: 0,
-    };
+// it('checks to see if game won, Tally win goes up by one', () => {
+//   const state = tally(initMatch(), {
+//     type: NEW_ROUND,
+//     payload: GAME_STATE.WIN
+//   });
+//   const expected = {
+//     [GAME_STATE.WIN]: 1,
+//     [GAME_STATE.LOSE]: 0,
+//   };
 
-    expect(state).toEqual(expected);
-  });
+//   expect(state).toEqual(expected);
+// });
 
 
-});
+// });
 
 describe('Testing user guessed', () => {
 

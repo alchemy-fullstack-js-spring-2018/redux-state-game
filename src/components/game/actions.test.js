@@ -28,7 +28,7 @@ describe ('Action tests', () => {
   //   thunk(dispatch, getState);
 
   //   const { calls } = dispatch.mock;
-  //   expect(calls.length).toBe(3);
+  //   expect(calls.length).toBe(3); //times mock is called. 
     
   //   expect(newGuess('z')).toEqual({ type: NEW_GUESS, payload: 'z' });
 
