@@ -1,0 +1,91 @@
+
+:local(.hangman) {
+    width: 100vw;
+    padding-top: 5em;
+
+    #status{
+        font-family: 'Shadows Into Light', cursive;
+        text-align: center;
+        color: white;
+        font-size: 2em;
+    }
+
+    #scaffold{
+        display: block;
+        height: 550px;
+    }
+
+    #gallows-container{
+        position: relative;
+        width: 280px;
+        height: 100%;
+        margin: auto;
+    }
+
+    .limbs{
+        position: absolute;
+        z-index: 5;
+    }
+
+    .gallows {
+        position: absolute;
+        top: 0;
+        left: calc(50% - 138px);
+        z-index: -1;
+    }
+
+    .head {
+        position: absolute;
+        left: 15.5%;
+        top: 30%;
+        z-index: 5;
+        transition: all 2s ease;
+    }
+
+    .torso {
+        position: absolute;
+        left: 8%;
+        top: 39%;
+    }
+
+    .rArm{
+        position: absolute;
+        left: 3%;
+        top: 41%;
+    }
+
+    .lArm{
+        position: absolute;
+        left: 31%;
+        top: 41%;
+    }
+
+    .lLeg{
+        position: absolute;
+        left: 26%;
+        top: 60%;
+    }
+
+    .rLeg{
+        position: absolute;
+        left: 6%;
+        top: 60%;
+    }
+
+    .head img {
+        height: 90px;
+    }
+
+    .torso img{
+        height: 190px;
+    }
+    
+    .lArm img, .rArm img{
+        height: 150px;
+    }
+    
+    .lLeg img, .rLeg img{
+        height: 150px;
+    }
+
+}

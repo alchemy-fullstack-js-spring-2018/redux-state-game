@@ -1,0 +1,35 @@
+:local(.gameStatus) {
+    display: block;
+
+    #keyboard {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    #player {
+        text-align: center;
+        width: fit-content;
+        margin: auto;
+    }
+
+    .key {
+        background-color: rgba(0, 0, 0, 0.514); /* Green */
+        border: 1px solid rgb(196, 196, 196);
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1em;
+        padding: .5em;
+    }
+
+    .key:hover {
+        background-color: rgb(18, 58, 92); /* Green */
+    }
+ 
+
+}
