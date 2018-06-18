@@ -145,7 +145,7 @@ describe('tally reducer', () => {
     const state = tally(initMatch(), {
       type: NEW_ROUND,
       payload: {
-        gameState: [GAME_STATE.WIN]}
+        gameState: [GAME_STATE.WIN] }
     });
     const expected = {
       [GAME_STATE.WIN]: 1,
